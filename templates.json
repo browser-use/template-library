@@ -1,0 +1,22 @@
+{
+	"default": {
+		"file": "default_template.py",
+		"description": "Simplest setup - capable of any web task with minimal configuration"
+	},
+	"advanced": {
+		"file": "advanced_template.py",
+		"description": "All configuration options shown with defaults"
+	},
+	"tools": {
+		"file": "tools_template.py",
+		"description": "Custom tool example - extend agent capabilities with your own functions"
+	},
+	"shopping": {
+		"file": "shopping/main.py",
+		"description": "E-commerce automation with structured output (Pydantic models)"
+	},
+	"job-application": {
+		"file": "job-application/main.py",
+		"description": "Automated job application form submission with resume upload"
+	}
+}
