@@ -13,11 +13,131 @@
 	},
 	"shopping": {
 		"file": "shopping/main.py",
-		"description": "E-commerce automation with structured output (Pydantic models)"
+		"description": "E-commerce automation with structured output (Pydantic models)",
+		"files": [
+			{
+				"source": "shopping/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "shopping/launch_chrome_debug.py",
+				"dest": "launch_chrome_debug.py",
+				"executable": true
+			},
+			{
+				"source": "shopping/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "shopping/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "shopping/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env and add your BROWSER_USE_API_KEY"
+				],
+				"note": "(Get your key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Launch Chrome with debugging (in a separate terminal)",
+				"commands": ["python launch_chrome_debug.py"],
+				"note": "(Run with --help to see options like --profile)\n(Keep this terminal open!)"
+			},
+			{
+				"title": "Run your script (in a NEW terminal)",
+				"commands": ["cd {template} && uv run {output}"]
+			},
+			{
+				"footer": "📖 See README.md for detailed instructions"
+			}
+		]
 	},
 	"job-application": {
 		"file": "job-application/main.py",
-		"description": "Automated job application form submission with resume upload"
+		"description": "Automated job application form submission with resume upload",
+		"files": [
+			{
+				"source": "job-application/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "job-application/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "job-application/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "job-application/README.md",
+				"dest": "README.md"
+			},
+			{
+				"source": "job-application/applicant_data.json",
+				"dest": "applicant_data.json"
+			},
+			{
+				"source": "job-application/example_resume.pdf",
+				"dest": "example_resume.pdf",
+				"binary": true
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env and add your OPENAI_API_KEY"
+				],
+				"note": "(Get your key at https://platform.openai.com/api-keys)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Customize your data",
+				"commands": [
+					"# Edit applicant_data.json with your information",
+					"# Replace example_resume.pdf with your resume"
+				]
+			},
+			{
+				"title": "Run the application",
+				"commands": ["uv run {output} --resume example_resume.pdf"]
+			},
+			{
+				"footer": "📖 See README.md for customization and troubleshooting"
+			}
+		]
 	},
 	"test": {
 		"file": "test_template.py",
