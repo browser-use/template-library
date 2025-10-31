@@ -18,5 +18,9 @@
 	"job-application": {
 		"file": "job-application/main.py",
 		"description": "Automated job application form submission with resume upload"
+	},
+	"test": {
+		"file": "test_template.py",
+		"description": "🚀 TEST: Demonstrates dynamic template discovery from GitHub"
 	}
 }
