@@ -17,10 +17,20 @@ The template uses custom email tools that integrate AgentMail's temporary inbox 
 
 ## Setup
 
-### 1. Get Your AgentMail API Key
+### 1. Get Your API Keys
 
-You'll need an AgentMail API key to create temporary email inboxes:
-1. Go to [https://agentmail.to/](https://agentmail.to/)
+You'll need two API keys:
+
+#### AgentMail API Key
+For creating temporary email inboxes:
+1. Go to [https://docs.agentmail.to/api-reference/api-keys/create](https://docs.agentmail.to/api-reference/api-keys/create)
+2. Sign up for an account
+3. Create your API key
+4. Copy the key
+
+#### Browser-Use API Key
+For the ChatBrowserUse LLM:
+1. Go to [https://browser-use.com/](https://browser-use.com/)
 2. Sign up for an account
 3. Get your API key from the dashboard
 4. Copy the key
@@ -31,9 +41,10 @@ You'll need an AgentMail API key to create temporary email inboxes:
 cp .env.example .env
 ```
 
-Edit `.env` and add your AgentMail API key:
+Edit `.env` and add both API keys:
 ```bash
 AGENTMAIL_API_KEY=your-key-here
+BROWSER_USE_API_KEY=your-key-here
 ```
 
 ### 3. Install Dependencies
