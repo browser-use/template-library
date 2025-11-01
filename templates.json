@@ -190,7 +190,7 @@
 				"commands": ["uv run {output}"]
 			},
 			{
-				"footer": "📖 See README.md for customization and advanced usage"
+				"footer": "📖 See README.md for customization and advanced usage\n\n🎃 Code: HAPPYHALLOWEEN -> $50 free!"
 			}
 		]
 	},
