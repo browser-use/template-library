@@ -139,6 +139,61 @@
 			}
 		]
 	},
+	"agentmail": {
+		"file": "agentmail/main.py",
+		"description": "Email inbox automation with 2FA support using AgentMail",
+		"files": [
+			{
+				"source": "agentmail/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "agentmail/email_tools.py",
+				"dest": "email_tools.py"
+			},
+			{
+				"source": "agentmail/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "agentmail/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "agentmail/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env and add your AGENTMAIL_API_KEY"
+				],
+				"note": "(Get your key at https://agentmail.to/)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the script",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "📖 See README.md for customization and advanced usage"
+			}
+		]
+	},
 	"test": {
 		"file": "test_template.py",
 		"description": "🚀 TEST: Demonstrates dynamic template discovery from GitHub"

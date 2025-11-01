@@ -16,11 +16,17 @@ Template collection for the `browser-use` CLI init command.
 │   ├── README.md
 │   ├── pyproject.toml.template
 │   └── .env.example.template
-└── job-application/             # Job application automation template
+├── job-application/             # Job application automation template
+│   ├── main.py
+│   ├── README.md
+│   ├── applicant_data.json
+│   ├── example_resume.pdf
+│   ├── pyproject.toml.template
+│   └── .env.example.template
+└── agentmail/                   # Email inbox automation with 2FA template
     ├── main.py
+    ├── email_tools.py
     ├── README.md
-    ├── applicant_data.json
-    ├── example_resume.pdf
     ├── pyproject.toml.template
     └── .env.example.template
 ```
@@ -34,6 +40,8 @@ Templates are loaded by the `browser-use init` CLI command:
 ```bash
 uvx browser-use init --template default
 uvx browser-use init --template shopping
+uvx browser-use init --template job-application
+uvx browser-use init --template agentmail
 ```
 
 ## Adding New Templates
