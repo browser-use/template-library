@@ -174,12 +174,12 @@
 				"commands": ["cd {template}"]
 			},
 			{
-				"title": "Set up your API key",
+				"title": "Set up your API keys",
 				"commands": [
 					"cp .env.example .env",
-					"# Edit .env and add your AGENTMAIL_API_KEY"
+					"# Edit .env and add your AGENTMAIL_API_KEY and BROWSER_USE_API_KEY"
 				],
-				"note": "(Get your key at https://agentmail.to/)"
+				"note": "(Get AgentMail key at https://docs.agentmail.to/api-reference/api-keys/create)\n(Get Browser-Use key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
 			},
 			{
 				"title": "Install dependencies",
