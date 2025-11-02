@@ -3,8 +3,6 @@ Default browser-use example using ChatBrowserUse
 
 The simplest way to use browser-use - capable of any web task
 with minimal configuration.
-
-🚀 TEST: This line demonstrates instant GitHub template fetching!
 """
 
 import asyncio

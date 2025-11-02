@@ -9,9 +9,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Debug: Check if API key is loaded
-print(f"AGENTMAIL_API_KEY loaded: {os.getenv('AGENTMAIL_API_KEY') is not None}")
-
 from browser_use import Agent, Browser, ChatBrowserUse, models
 from email_tools import EmailTools
 

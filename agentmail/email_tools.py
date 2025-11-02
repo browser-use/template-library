@@ -176,5 +176,4 @@ class EmailTools(Tools):
 				latest_message = await self.wait_for_message(inbox_id=inbox.inbox_id)
 			except TimeoutError:
 				return f'No email received in the inbox in {self.email_timeout}s'
-			# logger.info(f'Latest message: {latest_message}')
 			return self._serialize_message_for_llm(latest_message)

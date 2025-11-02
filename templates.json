@@ -193,9 +193,5 @@
 				"footer": "📖 See README.md for customization and advanced usage\n\n🎃 Code: HAPPYHALLOWEEN -> $50 free!"
 			}
 		]
-	},
-	"test": {
-		"file": "test_template.py",
-		"description": "🚀 TEST: Demonstrates dynamic template discovery from GitHub"
 	}
 }
