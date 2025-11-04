@@ -20,9 +20,9 @@ Each LLM operates in its own isolated browser session, allowing for fair side-by
 You'll need API keys for each LLM provider you want to test:
 
 #### Browser-Use API Key (Required)
-1. Go to [https://browser-use.com/](https://browser-use.com/)
-2. Sign up for an account
-3. Get your API key from the dashboard
+1. Go to [https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new](https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)
+2. Sign up for an account if needed
+3. Create a new API key
 4. Copy the key
 
 #### Google Gemini API Key (Optional but Recommended)
