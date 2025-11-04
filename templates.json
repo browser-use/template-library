@@ -193,5 +193,56 @@
 				"footer": "📖 See README.md for customization and advanced usage\n\n🎃 Code: HAPPYHALLOWEEN -> $50 free!"
 			}
 		]
+	},
+	"llm-arena": {
+		"file": "llm-arena/main.py",
+		"description": "Compare different AI models side-by-side in LLM Arena",
+		"files": [
+			{
+				"source": "llm-arena/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "llm-arena/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "llm-arena/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "llm-arena/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API keys",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env and add your API keys for the LLMs you want to compare"
+				],
+				"note": "(Required: BROWSER_USE_API_KEY from https://browser-use.com/)\n(Optional but recommended: GOOGLE_API_KEY, OPENAI_API_KEY, ANTHROPIC_API_KEY)\n(See README.md for links to get each API key)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the comparison",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "📖 See README.md for customization and advanced usage\n\n⚡ Enter a task and watch LLMs race to complete it!"
+			}
+		]
 	}
 }
