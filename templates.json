@@ -244,5 +244,72 @@
 				"footer": "📖 See README.md for customization and advanced usage\n\n⚡ Enter a task and watch LLMs race to complete it!"
 			}
 		]
+	},
+	"slack": {
+		"file": "slack/app/main.py",
+		"description": "Slack bot for browser automation tasks via mentions",
+		"files": [
+			{
+				"source": "slack/app/main.py",
+				"dest": "app/main.py"
+			},
+			{
+				"source": "slack/app/service.py",
+				"dest": "app/service.py"
+			},
+			{
+				"source": "slack/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "slack/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "slack/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API keys",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env and add your BROWSER_USE_API_KEY, SLACK_ACCESS_TOKEN, and SLACK_SIGNING_SECRET"
+				],
+				"note": "(Get Browser-Use key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)\n(Get Slack credentials from https://api.slack.com/apps)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Create and configure Slack app",
+				"commands": [
+					"# Follow README.md section 'Create Slack App' for detailed instructions"
+				],
+				"note": "(Set OAuth scopes: app_mentions:read, channels:read, chat:write)"
+			},
+			{
+				"title": "Start ngrok tunnel (for local development)",
+				"commands": ["ngrok http 8000"],
+				"note": "(Keep this terminal open and copy the HTTPS URL)"
+			},
+			{
+				"title": "Run the application (in a NEW terminal)",
+				"commands": ["cd {template} && uv run {output}"]
+			},
+			{
+				"footer": "📖 See README.md for detailed setup, Event Subscriptions configuration, and production deployment"
+			}
+		]
 	}
 }
