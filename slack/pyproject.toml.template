@@ -1,0 +1,15 @@
+[project]
+name = "slack-bot"
+version = "0.1.0"
+description = "Slack bot for browser automation tasks using browser-use"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "aiohttp>=3.12.15",
+    "browser-use>=0.10.0rc1",
+    "fastapi>=0.116.1",
+    "pydantic>=2.11.7",
+    "python-dotenv>=1.0.0",
+    "slack-sdk>=3.36.0",
+    "uvicorn>=0.35.0",
+]
