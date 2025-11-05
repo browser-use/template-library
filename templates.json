@@ -246,7 +246,7 @@
 		]
 	},
 	"slack": {
-		"file": "slack/app/main.py",
+		"file": "slack/README.md",
 		"description": "Slack bot for browser automation tasks via mentions",
 		"files": [
 			{
@@ -305,7 +305,7 @@
 			},
 			{
 				"title": "Run the application (in a NEW terminal)",
-				"commands": ["cd {template} && uv run {output}"]
+				"commands": ["cd {template} && uv run app/main.py"]
 			},
 			{
 				"footer": "📖 See README.md for detailed setup, Event Subscriptions configuration, and production deployment"
