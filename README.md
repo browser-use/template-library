@@ -67,7 +67,7 @@ uvx browser-use init --template agentmail
    - `pyproject.toml.template` - Project config
    - `.env.example.template` - Environment variables
    - Any additional assets
-3. Add entry to `INIT_TEMPLATES` and generation logic in `init_cmd.py`
+3. Add entry and generation logic in `templates.json`
 
 ## License
 
