@@ -1,0 +1,10 @@
+[project]
+name = "browser-use-all-openai-jobs"
+version = "0.1.0"
+description = "Get all current openings at OpenAI"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use>=0.9.5",
+    "python-dotenv>=1.0.0",
+]
