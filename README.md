@@ -49,7 +49,7 @@ uvx browser-use init --template agentmail
 ### Simple Template
 
 1. Create a new `.py` file in the root directory (e.g., `my_template.py`)
-2. Add entry to `INIT_TEMPLATES` in `browser-use/browser_use/init_cmd.py`:
+2. Add your template entry in `templates.json`:
 
 ```python
 'my-template': {
@@ -67,7 +67,7 @@ uvx browser-use init --template agentmail
    - `pyproject.toml.template` - Project config
    - `.env.example.template` - Environment variables
    - Any additional assets
-3. Add entry to `INIT_TEMPLATES` and generation logic in `init_cmd.py`
+3. Add entry and generation logic in `templates.json`
 
 ## License
 
