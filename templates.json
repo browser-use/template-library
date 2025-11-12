@@ -311,5 +311,56 @@
 				"footer": "📖 See README.md for detailed setup, Event Subscriptions configuration, and production deployment"
 			}
 		]
+	},
+	"all-openai-jobs": {
+		"file": "all-openai-jobs/main.py",
+		"description": "Web scraping with CodeAgent to extract job listings from career pages",
+		"files": [
+			{
+				"source": "all-openai-jobs/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "all-openai-jobs/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "all-openai-jobs/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "all-openai-jobs/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env and add your BROWSER_USE_API_KEY"
+				],
+				"note": "(Get your key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the job scraper",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "📖 See README.md for customization and troubleshooting\n\n🤖 CodeAgent will generate extraction code and save it to script.ipynb"
+			}
+		]
 	}
 }
