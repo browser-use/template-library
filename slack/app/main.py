@@ -51,6 +51,7 @@ async def slack_events(request: Request):
         raise
     except Exception as e:
         import traceback
+
         logger.error(f"Error in slack_events: {str(e)}")
         logger.error(f"Traceback: {traceback.format_exc()}")
         raise HTTPException(status_code=500, detail="Failed to process Slack event")

@@ -30,43 +30,43 @@ load_dotenv()
 
 
 async def apply_to_job(applicant_info: dict, resume_path: str):
-	"""
-	Apply to Rochester Regional Health job with provided information.
+    """
+    Apply to Rochester Regional Health job with provided information.
 
-	Expected JSON format in applicant_info:
-	{
-		"first_name": "John",
-		"last_name": "Doe",
-		"email": "john.doe@example.com",
-		"phone": "555-555-5555",
-		"age": "21",
-		"US_citizen": true,
-		"sponsorship_needed": false,
-		"postal_code": "12345",
-		"country": "USA",
-		"city": "Rochester",
-		"address": "123 Main St",
-		"gender": "Male",
-		"race": "Asian",
-		"Veteran_status": "Not a veteran",
-		"disability_status": "No disability"
-	}
-	"""
+    Expected JSON format in applicant_info:
+    {
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "john.doe@example.com",
+            "phone": "555-555-5555",
+            "age": "21",
+            "US_citizen": true,
+            "sponsorship_needed": false,
+            "postal_code": "12345",
+            "country": "USA",
+            "city": "Rochester",
+            "address": "123 Main St",
+            "gender": "Male",
+            "race": "Asian",
+            "Veteran_status": "Not a veteran",
+            "disability_status": "No disability"
+    }
+    """
 
-	# Use o3 model for complex form filling tasks
-	llm = ChatOpenAI(model='o3')
+    # Use o3 model for complex form filling tasks
+    llm = ChatOpenAI(model="o3")
 
-	tools = Tools()
+    tools = Tools()
 
-	@tools.action(description='Upload resume file')
-	async def upload_resume(browser_session):
-		params = UploadFileAction(path=resume_path, index=0)
-		return 'Ready to upload resume'
+    @tools.action(description="Upload resume file")
+    async def upload_resume(browser_session):
+        params = UploadFileAction(path=resume_path, index=0)
+        return "Ready to upload resume"
 
-	# Enable cross-origin iframe support for embedded application forms
-	browser = Browser(cross_origin_iframes=True)
+    # Enable cross-origin iframe support for embedded application forms
+    browser = Browser(cross_origin_iframes=True)
 
-	task = f"""
+    task = f"""
 	- Your goal is to fill out and submit a job application form with the provided information.
 	- Navigate to https://apply.appcast.io/jobs/50590620606/applyboard/apply/
 	- Scroll through the entire application and use extract_structured_data action to extract all the relevant information needed to fill out the job application form. use this information and return a structured output that can be used to fill out the entire form: {applicant_info}. Use the done action to finish the task. Fill out the job application form with the following information.
@@ -114,57 +114,59 @@ async def apply_to_job(applicant_info: dict, resume_path: str):
 		- At the end of the task, structure your final_result as 1) a human-readable summary of all detections and actions performed on the page with 2) a list with all questions encountered in the page. Do not say "see above." Include a fully written out, human-readable summary at the very end.
 	"""
 
-	# Make resume file available for upload
-	available_file_paths = [resume_path]
+    # Make resume file available for upload
+    available_file_paths = [resume_path]
 
-	agent = Agent(
-		task=task,
-		llm=llm,
-		browser=browser,
-		tools=tools,
-		available_file_paths=available_file_paths,
-	)
+    agent = Agent(
+        task=task,
+        llm=llm,
+        browser=browser,
+        tools=tools,
+        available_file_paths=available_file_paths,
+    )
 
-	history = await agent.run()
+    history = await agent.run()
 
-	return history.final_result()
+    return history.final_result()
 
 
 async def main(applicant_data_path: str, resume_path: str):
-	# Verify files exist before starting
-	if not os.path.exists(applicant_data_path):
-		raise FileNotFoundError(f'Applicant data file not found: {applicant_data_path}')
-	if not os.path.exists(resume_path):
-		raise FileNotFoundError(f'Resume file not found: {resume_path}')
+    # Verify files exist before starting
+    if not os.path.exists(applicant_data_path):
+        raise FileNotFoundError(f"Applicant data file not found: {applicant_data_path}")
+    if not os.path.exists(resume_path):
+        raise FileNotFoundError(f"Resume file not found: {resume_path}")
 
-	# Load applicant information from JSON
-	with open(applicant_data_path) as f:  # noqa: ASYNC230
-		applicant_info = json.load(f)
+    # Load applicant information from JSON
+    with open(applicant_data_path) as f:  # noqa: ASYNC230
+        applicant_info = json.load(f)
 
-	print(f'\n{"=" * 60}')
-	print('Starting Job Application')
-	print(f'{"=" * 60}')
-	print(f'Applicant: {applicant_info.get("first_name")} {applicant_info.get("last_name")}')
-	print(f'Email: {applicant_info.get("email")}')
-	print(f'Resume: {resume_path}')
-	print(f'{"=" * 60}\n')
+    print(f"\n{'=' * 60}")
+    print("Starting Job Application")
+    print(f"{'=' * 60}")
+    print(
+        f"Applicant: {applicant_info.get('first_name')} {applicant_info.get('last_name')}"
+    )
+    print(f"Email: {applicant_info.get('email')}")
+    print(f"Resume: {resume_path}")
+    print(f"{'=' * 60}\n")
 
-	# Submit the application
-	result = await apply_to_job(applicant_info, resume_path=resume_path)
+    # Submit the application
+    result = await apply_to_job(applicant_info, resume_path=resume_path)
 
-	# Display results
-	print(f'\n{"=" * 60}')
-	print('Application Result')
-	print(f'{"=" * 60}')
-	print(result)
-	print(f'{"=" * 60}\n')
+    # Display results
+    print(f"\n{'=' * 60}")
+    print("Application Result")
+    print(f"{'=' * 60}")
+    print(result)
+    print(f"{'=' * 60}\n")
 
 
-if __name__ == '__main__':
-	parser = argparse.ArgumentParser(
-		description='Automated job application submission',
-		formatter_class=argparse.RawDescriptionHelpFormatter,
-		epilog="""
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Automated job application submission",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
 Examples:
   # Use included example data
   python main.py --resume example_resume.pdf
@@ -172,14 +174,16 @@ Examples:
   # Use your own data
   python main.py --data my_info.json --resume my_resume.pdf
 		""",
-	)
-	parser.add_argument(
-		'--data',
-		default='applicant_data.json',
-		help='Path to applicant data JSON file (default: applicant_data.json)',
-	)
-	parser.add_argument('--resume', required=True, help='Path to resume/CV file (PDF format)')
+    )
+    parser.add_argument(
+        "--data",
+        default="applicant_data.json",
+        help="Path to applicant data JSON file (default: applicant_data.json)",
+    )
+    parser.add_argument(
+        "--resume", required=True, help="Path to resume/CV file (PDF format)"
+    )
 
-	args = parser.parse_args()
+    args = parser.parse_args()
 
-	asyncio.run(main(args.data, args.resume))
+    asyncio.run(main(args.data, args.resume))
