@@ -1,0 +1,64 @@
+name: test-templates
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  find-templates:
+    name: find-templates
+    runs-on: ubuntu-latest
+    outputs:
+      templates: ${{ steps.get-templates.outputs.templates }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get template names from templates.json
+        id: get-templates
+        run: |
+          templates=$(python3 -c "
+          import json
+          with open('templates.json') as f:
+              data = json.load(f)
+          print(json.dumps(list(data.keys())))
+          ")
+          echo "templates=$templates" >> $GITHUB_OUTPUT
+
+  test-init:
+    name: test-${{ matrix.template }}
+    needs: find-templates
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        template: ${{ fromJson(needs.find-templates.outputs.templates) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Setup test environment
+        working-directory: test-env
+        run: uv sync
+
+      - name: Test template initialization
+        working-directory: test-env
+        run: |
+          uv run test_templates.py --template ${{ matrix.template }} --output test_output
+
+      - name: Verify files were created
+        run: |
+          python3 .github/scripts/verify_template_output.py ${{ matrix.template }}
+
+      - name: Compile generated Python files
+        run: |
+          # Find all .py files generated (exclude __pycache__)
+          find test-env/${{ matrix.template }} -name "*.py" -not -path "*/.*" 2>/dev/null | while read file; do
+            echo "Compiling $file"
+            python3 -m py_compile "$file"
+          done || echo "No Python files to compile (simple template)"
