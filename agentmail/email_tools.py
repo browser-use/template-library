@@ -51,12 +51,12 @@ class EmailTools(Tools):
         """Simple HTML to text conversion"""
         import re
 
-        # Remove script and style elements - handle spaces in closing tags
+        # Remove script and style elements - handle any content in closing tags
         html = re.sub(
-            r"<script\b[^>]*>.*?</script\s*>", "", html, flags=re.DOTALL | re.IGNORECASE
+            r"<script\b[^>]*>.*?</script[^>]*>", "", html, flags=re.DOTALL | re.IGNORECASE
         )
         html = re.sub(
-            r"<style\b[^>]*>.*?</style\s*>", "", html, flags=re.DOTALL | re.IGNORECASE
+            r"<style\b[^>]*>.*?</style[^>]*>", "", html, flags=re.DOTALL | re.IGNORECASE
         )
 
         # Remove HTML tags
