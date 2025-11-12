@@ -1,0 +1,15 @@
+# UV virtual environment
+.venv/
+.python-version
+
+# Test outputs
+*.py
+*.md
+!test_templates.py
+!hello.py
+
+# Directories created during testing
+*/
+
+# UV lock file
+uv.lock
