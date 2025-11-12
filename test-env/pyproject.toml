@@ -1,0 +1,8 @@
+[project]
+name = "test-env"
+version = "0.1.0"
+description = "Local testing environment for template-library templates"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use>=0.9.5",
+]
