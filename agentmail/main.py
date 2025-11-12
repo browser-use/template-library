@@ -4,7 +4,9 @@ import sys
 
 from agentmail import AsyncAgentMail  # type: ignore
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -18,24 +20,24 @@ Go to reddit.com, create a new account (use the get_email_address), make up pass
 
 
 async def main():
-	# Create email inbox
-	# Get an API key from https://agentmail.to/
-	email_client = AsyncAgentMail(api_key=os.getenv('AGENTMAIL_API_KEY'))
-	inbox = await email_client.inboxes.create()
-	print(f'Your email address is: {inbox.inbox_id}\n\n')
+    # Create email inbox
+    # Get an API key from https://agentmail.to/
+    email_client = AsyncAgentMail(api_key=os.getenv("AGENTMAIL_API_KEY"))
+    inbox = await email_client.inboxes.create()
+    print(f"Your email address is: {inbox.inbox_id}\n\n")
 
-	# Initialize the tools for browser-use agent
-	tools = EmailTools(email_client=email_client, inbox=inbox)
+    # Initialize the tools for browser-use agent
+    tools = EmailTools(email_client=email_client, inbox=inbox)
 
-	# Initialize the LLM for browser-use agent
-	llm = ChatBrowserUse()
+    # Initialize the LLM for browser-use agent
+    llm = ChatBrowserUse()
 
-	browser = Browser()
+    browser = Browser()
 
-	agent = Agent(task=TASK, tools=tools, llm=llm, browser=browser)
+    agent = Agent(task=TASK, tools=tools, llm=llm, browser=browser)
 
-	await agent.run()
+    await agent.run()
 
 
-if __name__ == '__main__':
-	asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

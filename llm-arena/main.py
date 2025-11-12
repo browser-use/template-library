@@ -2,7 +2,15 @@
 LLM comparison tool - runs the same task across multiple LLMs in parallel
 """
 
-from browser_use import Agent, Browser, ChatBrowserUse, ChatGoogle, ChatAnthropic, ChatOpenAI, sandbox
+from browser_use import (
+    Agent,
+    Browser,
+    ChatBrowserUse,
+    ChatGoogle,
+    ChatAnthropic,
+    ChatOpenAI,
+    sandbox,
+)
 from browser_use.llm.base import BaseChatModel
 from dotenv import load_dotenv
 import asyncio
@@ -10,6 +18,7 @@ import time
 import os
 
 load_dotenv()
+
 
 @sandbox()
 async def execute_task(browser: Browser, task: str, llm: BaseChatModel, llm_name: str):
@@ -29,11 +38,7 @@ async def execute_task(browser: Browser, task: str, llm: BaseChatModel, llm_name
     print(f"\n✅ {llm_name} - Completed in {elapsed:.2f}s")
     print(f"📊 {llm_name} - Result: {result}")
 
-    return {
-        'llm': llm_name,
-        'result': result,
-        'time': elapsed
-    }
+    return {"llm": llm_name, "result": result, "time": elapsed}
 
 
 async def main():
@@ -58,9 +63,22 @@ async def main():
         # Define LLMs to compare
         llms = [
             ("Browser Use (bu-0-1)", ChatBrowserUse()),
-            ("Google Gemini (gemini-flash-latest)", ChatGoogle(model="gemini-flash-latest", api_key=os.getenv("GOOGLE_API_KEY"))),
-            ("OpenAI ChatGPT (gpt-4.1-mini)", ChatOpenAI(model="gpt-4.1-mini", api_key=os.getenv("OPENAI_API_KEY"))),
-            ("Anthropic Claude (claude-sonnet-4-0)", ChatAnthropic(model="claude-sonnet-4-0", api_key=os.getenv("ANTHROPIC_API_KEY"))),
+            (
+                "Google Gemini (gemini-flash-latest)",
+                ChatGoogle(
+                    model="gemini-flash-latest", api_key=os.getenv("GOOGLE_API_KEY")
+                ),
+            ),
+            (
+                "OpenAI ChatGPT (gpt-4.1-mini)",
+                ChatOpenAI(model="gpt-4.1-mini", api_key=os.getenv("OPENAI_API_KEY")),
+            ),
+            (
+                "Anthropic Claude (claude-sonnet-4-0)",
+                ChatAnthropic(
+                    model="claude-sonnet-4-0", api_key=os.getenv("ANTHROPIC_API_KEY")
+                ),
+            ),
         ]
 
         print(f"\n🏁 Starting race with {len(llms)} LLMs...")
@@ -84,7 +102,7 @@ async def main():
 
         valid_results = [r for r in results if isinstance(r, dict)]
         if valid_results:
-            sorted_results = sorted(valid_results, key=lambda x: x['time'])
+            sorted_results = sorted(valid_results, key=lambda x: x["time"])
             for i, result in enumerate(sorted_results, 1):
                 print(f"{i}. {result['llm']} - {result['time']:.2f}s")
 
@@ -93,5 +111,5 @@ async def main():
         print("🛑 Shutdown complete")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

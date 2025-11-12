@@ -23,9 +23,9 @@ class SlackService:
     def format_for_slack(self, text: str) -> str:
         """Convert markdown-style text to Slack-friendly format"""
         # Replace escaped newlines with actual newlines
-        text = text.replace('\\n', '\n')
+        text = text.replace("\\n", "\n")
         # Convert markdown bold (**text**) to Slack bold (*text*)
-        text = text.replace('**', '*')
+        text = text.replace("**", "*")
         return text
 
     async def send_message(
@@ -92,9 +92,7 @@ class SlackService:
         """Async function to process the agent task"""
         try:
             # Send initial "starting" message and capture its timestamp
-            response = await self.send_message(
-                channel_id, "Starting browser task..."
-            )
+            response = await self.send_message(channel_id, "Starting browser task...")
             if not response or not response.get("ok"):
                 logger.error(f"Failed to send initial message: {response}")
                 return
@@ -105,7 +103,7 @@ class SlackService:
                 return
 
             # Get profile_id from environment (optional)
-            profile_id = os.getenv('BROWSER_USE_PROFILE_ID')
+            profile_id = os.getenv("BROWSER_USE_PROFILE_ID")
 
             # Callback to capture browser session info
             def on_browser_created(data: BrowserCreatedData):
@@ -115,22 +113,21 @@ class SlackService:
 
                 # Send live URL to Slack immediately
                 asyncio.create_task(
-                    self.send_message(
-                        channel_id,
-                        f"📺 Live session: {data.live_url}"
-                    )
+                    self.send_message(channel_id, f"📺 Live session: {data.live_url}")
                 )
 
             # Create standalone function for sandbox decorator
             @sandbox(
-                log_level='INFO',
+                log_level="INFO",
                 cloud_timeout=30,
                 cloud_profile_id=profile_id,
-                on_browser_created=on_browser_created
+                on_browser_created=on_browser_created,
             )
             async def execute_task(browser: Browser, task_description: str):
                 """Execute browser task in sandbox"""
-                agent = Agent(browser=browser, task=task_description, llm=ChatBrowserUse())
+                agent = Agent(
+                    browser=browser, task=task_description, llm=ChatBrowserUse()
+                )
                 result = await agent.run()
                 return result.final_result()
 
@@ -150,8 +147,6 @@ class SlackService:
 
             # Send error message as a new message
             try:
-                await self.send_message(
-                    channel_id, f"❌ Error: {error_message}"
-                )
+                await self.send_message(channel_id, f"❌ Error: {error_message}")
             except Exception as send_error:
                 logger.error(f"Failed to send error message: {str(send_error)}")

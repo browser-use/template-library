@@ -15,16 +15,16 @@ load_dotenv()
 
 
 async def main():
-	browser = Browser(use_cloud=False)
-	llm = ChatBrowserUse()
-	task = 'Find the number of stars of the browser-use repository on GitHub'
-	agent = Agent(
-		browser=browser,
-		task=task,
-		llm=llm,
-	)
-	await agent.run()
+    browser = Browser(use_cloud=False)
+    llm = ChatBrowserUse()
+    task = "Find the number of stars of the browser-use repository on GitHub"
+    agent = Agent(
+        browser=browser,
+        task=task,
+        llm=llm,
+    )
+    await agent.run()
 
 
-if __name__ == '__main__':
-	asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
