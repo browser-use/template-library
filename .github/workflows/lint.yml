@@ -1,0 +1,45 @@
+name: lint
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint-syntax:
+    name: syntax-errors
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Check syntax errors in template files
+        run: |
+          uv run ruff check --no-fix --select PLE \
+            *_template.py \
+            */main.py \
+            */email_tools.py \
+            */launch_chrome_debug.py \
+            */app/*.py \
+            --exclude test-env
+
+  lint-format:
+    name: code-format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Check code formatting in template files
+        run: |
+          uv run ruff format --check \
+            *_template.py \
+            */main.py \
+            */email_tools.py \
+            */launch_chrome_debug.py \
+            */app/*.py \
+            --exclude test-env
