@@ -53,7 +53,10 @@ class EmailTools(Tools):
 
         # Remove script and style elements - handle any content in closing tags
         html = re.sub(
-            r"<script\b[^>]*>.*?</script[^>]*>", "", html, flags=re.DOTALL | re.IGNORECASE
+            r"<script\b[^>]*>.*?</script[^>]*>",
+            "",
+            html,
+            flags=re.DOTALL | re.IGNORECASE,
         )
         html = re.sub(
             r"<style\b[^>]*>.*?</style[^>]*>", "", html, flags=re.DOTALL | re.IGNORECASE
