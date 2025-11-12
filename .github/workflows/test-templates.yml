@@ -49,7 +49,10 @@ jobs:
       - name: Test template initialization
         working-directory: test-env
         run: |
-          uv run test_templates.py --template ${{ matrix.template }} --output test_output
+          uv run test_templates.py --template ${{ matrix.template }} --output test_output.py
+
+      - name: Debug generated files
+        run: ls -la test-env/${{ matrix.template }}/ || echo "Directory not found"
 
       - name: Verify files were created
         run: |

@@ -20,7 +20,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - name: Check syntax errors in template files
         run: |
-          uv run ruff check --no-fix --select PLE \
+          uvx ruff check --no-fix --select PLE \
             *_template.py \
             */main.py \
             */email_tools.py \
@@ -36,7 +36,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - name: Check code formatting in template files
         run: |
-          uv run ruff format --check \
+          uvx ruff format --check \
             *_template.py \
             */main.py \
             */email_tools.py \
