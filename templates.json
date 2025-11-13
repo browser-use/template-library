@@ -26,6 +26,70 @@
 			"last_modified_date": "2025-11-11"
 		}
 	},
+	"sandbox": {
+		"file": "sandbox/main.py",
+		"description": "Cloud browser automation with @sandbox decorator for persistent auth and proxy routing",
+		"files": [
+			{
+				"source": "sandbox/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "sandbox/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "sandbox/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "sandbox/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env and add your BROWSER_USE_API_KEY"
+				],
+				"note": "(Get your key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "(Optional) Create a cloud profile for persistent authentication",
+				"commands": [
+					"# Visit https://cloud.browser-use.com/#settings/profiles",
+					"# Create a profile, log in to your target site, and copy the Profile ID",
+					"# Add CLOUD_PROFILE_ID to .env"
+				]
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the script",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "📖 See README.md for cloud configuration options and troubleshooting"
+			}
+		],
+		"author": {
+			"name": "Shawn Pana",
+			"github_profile": "https://github.com/ShawnPana",
+			"last_modified_date": "2025-11-13"
+		}
+	},
 	"shopping": {
 		"file": "shopping/main.py",
 		"description": "E-commerce automation with structured output (Pydantic models)",

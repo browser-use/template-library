@@ -1,0 +1,9 @@
+[project]
+name = "browser-use-sandbox"
+version = "0.1.0"
+description = "Browser automation with cloud sandbox configuration"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use",
+    "python-dotenv",
+]
