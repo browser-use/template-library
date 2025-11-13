@@ -70,7 +70,12 @@
 			{
 				"footer": "📖 See README.md for detailed instructions"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"job-application": {
 		"file": "job-application/main.py",
@@ -137,7 +142,12 @@
 			{
 				"footer": "📖 See README.md for customization and troubleshooting"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"agentmail": {
 		"file": "agentmail/main.py",
@@ -192,7 +202,12 @@
 			{
 				"footer": "📖 See README.md for customization and advanced usage\n\n🎃 Code: HAPPYHALLOWEEN -> $50 free!"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"llm-arena": {
 		"file": "llm-arena/main.py",
@@ -243,7 +258,12 @@
 			{
 				"footer": "📖 See README.md for customization and advanced usage\n\n⚡ Enter a task and watch LLMs race to complete it!"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"slack": {
 		"file": "slack/README.md",
@@ -310,7 +330,12 @@
 			{
 				"footer": "📖 See README.md for detailed setup, Event Subscriptions configuration, and production deployment"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"all-openai-jobs": {
 		"file": "all-openai-jobs/main.py",
@@ -361,6 +386,11 @@
 			{
 				"footer": "📖 See README.md for customization and troubleshooting\n\n🤖 CodeAgent will generate extraction code and save it to script.ipynb"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	}
 }
