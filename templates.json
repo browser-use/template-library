@@ -29,7 +29,6 @@
 	"shopping": {
 		"file": "shopping/main.py",
 		"description": "E-commerce automation with structured output (Pydantic models)",
-		"featured": true,
 		"files": [
 			{
 				"source": "shopping/main.py",
@@ -169,7 +168,6 @@
 	"agentmail": {
 		"file": "agentmail/main.py",
 		"description": "Email inbox automation with 2FA support using AgentMail",
-		"featured": true,
 		"files": [
 			{
 				"source": "agentmail/main.py",
@@ -287,7 +285,6 @@
 	"slack": {
 		"file": "slack/README.md",
 		"description": "Slack bot for browser automation tasks via mentions",
-		"featured": true,
 		"files": [
 			{
 				"source": "slack/app/main.py",
