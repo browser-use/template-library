@@ -1,15 +1,30 @@
 {
 	"default": {
 		"file": "default_template.py",
-		"description": "Simplest setup - capable of any web task with minimal configuration"
+		"description": "Simplest setup - capable of any web task with minimal configuration",
+		"author": {
+			"name": "Reagan Hsu",
+			"github_profile": "https://github.com/Cheggin",
+			"last_modified_date": "2025-11-11"
+		}
 	},
 	"advanced": {
 		"file": "advanced_template.py",
-		"description": "All configuration options shown with defaults"
+		"description": "All configuration options shown with defaults",
+		"author": {
+			"name": "Reagan Hsu",
+			"github_profile": "https://github.com/Cheggin",
+			"last_modified_date": "2025-11-11"
+		}
 	},
 	"tools": {
 		"file": "tools_template.py",
-		"description": "Custom tool example - extend agent capabilities with your own functions"
+		"description": "Custom tool example - extend agent capabilities with your own functions",
+		"author": {
+			"name": "Reagan Hsu",
+			"github_profile": "https://github.com/Cheggin",
+			"last_modified_date": "2025-11-11"
+		}
 	},
 	"shopping": {
 		"file": "shopping/main.py",
@@ -73,9 +88,9 @@
 			}
 		],
 		"author": {
-			"name": "",
-			"github_profile": "",
-			"last_modified_date": ""
+			"name": "Shawn Pana",
+			"github_profile": "https://github.com/ShawnPana",
+			"last_modified_date": "2025-11-11"
 		}
 	},
 	"job-application": {
@@ -146,9 +161,9 @@
 			}
 		],
 		"author": {
-			"name": "",
-			"github_profile": "",
-			"last_modified_date": ""
+			"name": "Shawn Pana",
+			"github_profile": "https://github.com/ShawnPana",
+			"last_modified_date": "2025-11-11"
 		}
 	},
 	"agentmail": {
@@ -207,9 +222,9 @@
 			}
 		],
 		"author": {
-			"name": "",
-			"github_profile": "",
-			"last_modified_date": ""
+			"name": "Magnus Müller",
+			"github_profile": "https://github.com/MagMueller",
+			"last_modified_date": "2025-11-11"
 		}
 	},
 	"llm-arena": {
@@ -264,9 +279,9 @@
 			}
 		],
 		"author": {
-			"name": "",
-			"github_profile": "",
-			"last_modified_date": ""
+			"name": "Shawn Pana",
+			"github_profile": "https://github.com/ShawnPana",
+			"last_modified_date": "2025-11-11"
 		}
 	},
 	"slack": {
@@ -337,9 +352,9 @@
 			}
 		],
 		"author": {
-			"name": "",
-			"github_profile": "",
-			"last_modified_date": ""
+			"name": "Shawn Pana",
+			"github_profile": "https://github.com/ShawnPana",
+			"last_modified_date": "2025-11-11"
 		}
 	},
 	"all-openai-jobs": {
@@ -394,9 +409,9 @@
 			}
 		],
 		"author": {
-			"name": "",
-			"github_profile": "",
-			"last_modified_date": ""
+			"name": "kalil0321",
+			"github_profile": "https://github.com/kalil0321",
+			"last_modified_date": "2025-11-07"
 		}
 	}
 }
