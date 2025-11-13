@@ -173,6 +173,8 @@ Each template entry in `templates.json` supports the following fields:
 |-------|------|-------------|
 | `files` | array | List of files to copy for complex templates (see File Specification below) |
 | `next_steps` | array | Custom post-installation instructions (see Next Steps below) |
+| `featured` | boolean | Mark template as featured (shown prominently in CLI) |
+| `author` | object | Template author information (see Author Information below) |
 
 ### File Specification
 
@@ -245,6 +247,68 @@ The CLI automatically replaces these variables in `commands`:
 }
 // Becomes: "cd shopping && uv run my_bot"
 ```
+
+### Author Information
+
+The optional `author` object allows you to add attribution to your template:
+
+```json
+{
+    "name": "Jane Smith",                          // Optional: Author name or username
+    "github_profile": "https://github.com/janesmith",  // Optional: GitHub profile URL
+    "last_modified_date": "2025-11-12"             // Optional: Last update date (YYYY-MM-DD)
+}
+```
+
+**Example:**
+
+```json
+"my-template": {
+    "file": "my-template/main.py",
+    "description": "Advanced web scraping with AI",
+    "files": [...],
+    "next_steps": [...],
+    "author": {
+        "name": "Jane Smith",
+        "github_profile": "https://github.com/janesmith",
+        "last_modified_date": "2025-11-12"
+    }
+}
+```
+
+**Notes:**
+- All fields within `author` are optional
+- Default templates (`default`, `advanced`, `tools`) typically don't need author information
+- Community-contributed templates should include author information when possible
+- The `last_modified_date` should be updated whenever the template is significantly changed
+
+### Featured Templates
+
+The optional `featured` boolean flag marks templates for prominent display in the CLI's template selector UI.
+
+```json
+{
+    "featured": true
+}
+```
+
+**Example:**
+
+```json
+"shopping": {
+    "file": "shopping/main.py",
+    "description": "E-commerce automation with structured output",
+    "featured": true,
+    "files": [...],
+    "next_steps": [...]
+}
+```
+
+**Notes:**
+- Featured templates are shown in a dedicated "Featured Templates" section in the CLI
+- Default templates (`default`, `advanced`, `tools`) are always shown separately and don't need the featured flag
+- Use this to highlight high-quality, well-maintained, or popular community templates
+- Currently featured templates: `shopping`, `job-application`, `agentmail`, `llm-arena`, `slack`, `all-openai-jobs`
 
 ### Best Practices
 

@@ -47,6 +47,29 @@ def validate_template_entry(name: str, config: dict, repo_root: Path) -> list[st
     if not main_file.exists():
         errors.append(f"Template '{name}': main file '{config['file']}' does not exist")
 
+    # Validate featured field if present (optional)
+    if 'featured' in config:
+        if not isinstance(config['featured'], bool):
+            errors.append(f"Template '{name}': 'featured' field must be a boolean")
+
+    # Validate author field if present (optional)
+    if 'author' in config:
+        author = config['author']
+        if not isinstance(author, dict):
+            errors.append(f"Template '{name}': 'author' field must be an object")
+        else:
+            # All author fields are optional, but validate types if present
+            optional_author_fields = {
+                'name': str,
+                'github_profile': str,
+                'last_modified_date': str
+            }
+            for field, expected_type in optional_author_fields.items():
+                if field in author and not isinstance(author[field], expected_type):
+                    errors.append(
+                        f"Template '{name}': author.{field} must be a {expected_type.__name__}"
+                    )
+
     # Check files array if present
     if 'files' in config:
         for file_spec in config['files']:

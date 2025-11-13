@@ -14,6 +14,7 @@
 	"shopping": {
 		"file": "shopping/main.py",
 		"description": "E-commerce automation with structured output (Pydantic models)",
+		"featured": true,
 		"files": [
 			{
 				"source": "shopping/main.py",
@@ -70,11 +71,17 @@
 			{
 				"footer": "📖 See README.md for detailed instructions"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"job-application": {
 		"file": "job-application/main.py",
 		"description": "Automated job application form submission with resume upload",
+		"featured": true,
 		"files": [
 			{
 				"source": "job-application/main.py",
@@ -137,11 +144,17 @@
 			{
 				"footer": "📖 See README.md for customization and troubleshooting"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"agentmail": {
 		"file": "agentmail/main.py",
 		"description": "Email inbox automation with 2FA support using AgentMail",
+		"featured": true,
 		"files": [
 			{
 				"source": "agentmail/main.py",
@@ -190,13 +203,19 @@
 				"commands": ["uv run {output}"]
 			},
 			{
-				"footer": "📖 See README.md for customization and advanced usage\n\n🎃 Code: HAPPYHALLOWEEN -> $50 free!"
+				"footer": "📖 See README.md for customization and advanced usage"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"llm-arena": {
 		"file": "llm-arena/main.py",
 		"description": "Compare different AI models side-by-side in LLM Arena",
+		"featured": true,
 		"files": [
 			{
 				"source": "llm-arena/main.py",
@@ -243,11 +262,17 @@
 			{
 				"footer": "📖 See README.md for customization and advanced usage\n\n⚡ Enter a task and watch LLMs race to complete it!"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"slack": {
 		"file": "slack/README.md",
 		"description": "Slack bot for browser automation tasks via mentions",
+		"featured": true,
 		"files": [
 			{
 				"source": "slack/app/main.py",
@@ -310,11 +335,17 @@
 			{
 				"footer": "📖 See README.md for detailed setup, Event Subscriptions configuration, and production deployment"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	},
 	"all-openai-jobs": {
 		"file": "all-openai-jobs/main.py",
 		"description": "Web scraping with CodeAgent to extract job listings from career pages",
+		"featured": true,
 		"files": [
 			{
 				"source": "all-openai-jobs/main.py",
@@ -361,6 +392,11 @@
 			{
 				"footer": "📖 See README.md for customization and troubleshooting\n\n🤖 CodeAgent will generate extraction code and save it to script.ipynb"
 			}
-		]
+		],
+		"author": {
+			"name": "",
+			"github_profile": "",
+			"last_modified_date": ""
+		}
 	}
 }
