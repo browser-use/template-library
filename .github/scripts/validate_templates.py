@@ -47,6 +47,11 @@ def validate_template_entry(name: str, config: dict, repo_root: Path) -> list[st
     if not main_file.exists():
         errors.append(f"Template '{name}': main file '{config['file']}' does not exist")
 
+    # Validate featured field if present (optional)
+    if 'featured' in config:
+        if not isinstance(config['featured'], bool):
+            errors.append(f"Template '{name}': 'featured' field must be a boolean")
+
     # Validate author field if present (optional)
     if 'author' in config:
         author = config['author']
