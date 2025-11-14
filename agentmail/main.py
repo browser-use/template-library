@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from browser_use import Agent, Browser, ChatBrowserUse, models
+from browser_use import Agent, Browser, ChatBrowserUse
 from email_tools import EmailTools
 
 TASK = """
