@@ -25,10 +25,11 @@ import os
 
 load_dotenv()
 
+
 @sandbox(
-    cloud_profile_id=os.getenv('CLOUD_PROFILE_ID'),
-    cloud_proxy_country_code=os.getenv('CLOUD_PROXY_COUNTRY_CODE'),
-    cloud_timeout=int(os.getenv('CLOUD_TIMEOUT', 60)),
+    cloud_profile_id=os.getenv("CLOUD_PROFILE_ID"),
+    cloud_proxy_country_code=os.getenv("CLOUD_PROXY_COUNTRY_CODE"),
+    cloud_timeout=int(os.getenv("CLOUD_TIMEOUT", 60)),
 )
 async def main(browser: Browser):
     llm = ChatBrowserUse()
@@ -42,6 +43,7 @@ async def main(browser: Browser):
     )
 
     await agent.run()
+
 
 if __name__ == "__main__":
     asyncio.run(main())
