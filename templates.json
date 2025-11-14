@@ -474,5 +474,70 @@
 			"github_profile": "https://github.com/kalil0321",
 			"last_modified_date": "2025-11-07"
 		}
+	},
+	"scheduler": {
+		"file": "scheduler/main.py",
+		"description": "Multi-agent scheduler that runs browser automation tasks concurrently on configurable intervals",
+		"featured": true,
+		"files": [
+			{
+				"source": "scheduler/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "scheduler/agents/gmail.py",
+				"dest": "agents/gmail.py"
+			},
+			{
+				"source": "scheduler/agents/x.py",
+				"dest": "agents/x.py"
+			},
+			{
+				"source": "scheduler/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "scheduler/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "scheduler/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key and cloud settings",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env and add your BROWSER_USE_API_KEY and optional cloud settings"
+				],
+				"note": "(Get your API key at https://cloud.browser-use.com/new-api-key)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the scheduler",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "📖 See README.md for adding custom agents, configuration, and troubleshooting\n\n🔄 The scheduler will auto-discover all .py files in the agents/ directory"
+			}
+		],
+		"author": {
+			"name": "Shawn Pana",
+			"github_profile": "https://github.com/ShawnPana",
+			"last_modified_date": "2025-11-14"
+		}
 	}
 }
