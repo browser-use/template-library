@@ -40,22 +40,22 @@ uvx browser-use init --template agentmail
 
 ## Testing Templates Locally
 
-Before submitting a PR, you can test your templates locally using the included test environment:
+To test your templates before submitting a PR, you can modify the browser-use CLI to use your fork/branch:
 
-```bash
-# First time setup
-cd test-env
-uv sync
+1. Fork this repository and create a branch with your changes
+2. Clone the browser-use repository and locate `browser_use/init_cmd.py`
+3. Find the `TEMPLATE_REPO_URL` variable (line 27, typically set to `https://raw.githubusercontent.com/browser-use/template-library/main`)
+4. Replace it with your fork and branch: `https://raw.githubusercontent.com/YOUR_USERNAME/template-library/YOUR_BRANCH`
+5. From the browser-use directory, test your template:
+   ```bash
+   # Interactive mode (select from list)
+   python -m browser_use.init_cmd
 
-# Test a simple template
-uv run test_templates.py --template default --output my_test.py
+   # Direct template selection
+   python -m browser_use.init_cmd --template your-template --output test.py
+   ```
 
-# Test a complex template
-uv run test_templates.py --template shopping --output my_bot
-```
-
-The test script monkey-patches browser-use CLI to use your local `templates.json` and template files instead of fetching from GitHub, allowing you to verify:
-
+This allows you to verify:
 - ✓ Template files are copied correctly
 - ✓ `next_steps` display properly
 - ✓ File permissions are set (executable files)
@@ -77,12 +77,6 @@ The test script monkey-patches browser-use CLI to use your local `templates.json
        "file": "my_template.py",
        "description": "Brief description of what this template does"
    }
-   ```
-
-3. Test it locally:
-   ```bash
-   cd test-env
-   uv run test_templates.py --template my-template --output test.py
    ```
 
 ### Complex Template (Multiple Files)
@@ -146,12 +140,6 @@ The test script monkey-patches browser-use CLI to use your local `templates.json
            }
        ]
    }
-   ```
-
-3. Test it locally:
-   ```bash
-   cd test-env
-   uv run test_templates.py --template my-template --output my_bot
    ```
 
 ## Template Structure Reference
@@ -325,8 +313,7 @@ The optional `featured` boolean flag marks templates for prominent display in th
 1. Fork this repository
 2. Create a new branch for your template
 3. Add your template files and update `templates.json`
-4. Test locally using `test-env/test_templates.py`
-5. Submit a PR with:
+4. Submit a PR with:
    - Clear description of what the template does
    - Use case or problem it solves
    - Any special requirements or dependencies
