@@ -32,10 +32,12 @@ INTERVAL_SECONDS = INTERVAL_MINUTES * 60
 # Scripts directory
 SCRIPTS_DIR = os.getenv("SCHEDULER_SCRIPTS_DIR", "agents")
 
+
 def log_message(message: str, level: str = "INFO"):
     """Log a message with timestamp."""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{timestamp}] [{level}] {message}", flush=True)
+
 
 async def run_script_subprocess(script_path: Path) -> tuple[str, bool, str]:
     """
@@ -63,7 +65,7 @@ async def run_script_subprocess(script_path: Path) -> tuple[str, bool, str]:
             str(script_path),
             stdout=asyncio.subprocess.DEVNULL,
             stderr=asyncio.subprocess.DEVNULL,
-            cwd=script_path.parent
+            cwd=script_path.parent,
         )
 
         # Wait for completion
@@ -71,7 +73,7 @@ async def run_script_subprocess(script_path: Path) -> tuple[str, bool, str]:
 
         # Read the result from the JSON file
         if result_file.exists():
-            with open(result_file, 'r') as f:
+            with open(result_file, "r") as f:
                 result_data = json.load(f)
 
             success = result_data.get("success", False)
@@ -85,15 +87,24 @@ async def run_script_subprocess(script_path: Path) -> tuple[str, bool, str]:
             return (script_name, success, result_content)
         else:
             # File doesn't exist - script failed or didn't write output
-            log_message(f"{script_name} failed - no result file found (exit code: {returncode})", "ERROR")
-            return (script_name, False, f"Script exited with code {returncode}, no result file generated")
+            log_message(
+                f"{script_name} failed - no result file found (exit code: {returncode})",
+                "ERROR",
+            )
+            return (
+                script_name,
+                False,
+                f"Script exited with code {returncode}, no result file generated",
+            )
 
     except Exception as e:
         log_message(f"{script_name} execution failed: {str(e)}", "ERROR")
         import traceback
+
         error_trace = traceback.format_exc()
         log_message(error_trace, "ERROR")
         return (script_name, False, str(e))
+
 
 async def run_all_scripts(scripts: list[Path]) -> dict:
     """
@@ -122,10 +133,10 @@ async def run_all_scripts(scripts: list[Path]) -> dict:
         if isinstance(result, tuple):
             script_name, success, output = result
 
-            print(f"{'='*80}")
+            print(f"{'=' * 80}")
             print(f"  Script: {script_name}")
             print(f"  Status: {'✓ SUCCESS' if success else '✗ FAILED'}")
-            print(f"{'='*80}")
+            print(f"{'=' * 80}")
 
             if output:
                 print(output)
@@ -145,16 +156,17 @@ async def run_all_scripts(scripts: list[Path]) -> dict:
         "successful": successful,
         "failed": failed,
         "duration": duration,
-        "results": results
+        "results": results,
     }
 
     log_message(
         f"Batch complete: {successful}/{len(scripts)} successful, "
         f"{failed} failed, duration: {duration:.2f}s",
-        "SUCCESS" if failed == 0 else "WARNING"
+        "SUCCESS" if failed == 0 else "WARNING",
     )
 
     return summary
+
 
 def discover_scripts() -> list[Path]:
     """
@@ -178,7 +190,7 @@ def discover_scripts() -> list[Path]:
     discovered = []
     for script_path in scripts_dir.glob("*.py"):
         # Ignore files starting with _ or .
-        if script_path.name.startswith(('_', '.')):
+        if script_path.name.startswith(("_", ".")):
             log_message(f"Skipping disabled script: {script_path.name}", "INFO")
             continue
 
@@ -189,9 +201,12 @@ def discover_scripts() -> list[Path]:
 
     return discovered
 
+
 async def scheduler_loop():
     """Main scheduler loop that runs all discovered scripts every INTERVAL_MINUTES."""
-    log_message(f"Scheduler started - will run scripts every {INTERVAL_MINUTES} minutes")
+    log_message(
+        f"Scheduler started - will run scripts every {INTERVAL_MINUTES} minutes"
+    )
     log_message("Press Ctrl+C to stop")
 
     # Discover scripts in the directory
@@ -236,6 +251,7 @@ async def scheduler_loop():
         log_message(f"Scheduler error: {str(e)}", "ERROR")
         raise
 
+
 def main():
     """Entry point for the scheduler."""
     log_message("=" * 60)
@@ -246,6 +262,7 @@ def main():
 
     # Run the scheduler
     asyncio.run(scheduler_loop())
+
 
 if __name__ == "__main__":
     main()

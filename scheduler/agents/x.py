@@ -26,60 +26,67 @@ from pathlib import Path
 
 load_dotenv()
 
+
 @sandbox(
-	cloud_profile_id=os.getenv("CLOUD_PROFILE_ID"),
-	cloud_proxy_country_code=os.getenv("CLOUD_PROXY_COUNTRY_CODE"),
-	cloud_timeout=int(os.getenv("CLOUD_TIMEOUT", 60)),
+    cloud_profile_id=os.getenv("CLOUD_PROFILE_ID"),
+    cloud_proxy_country_code=os.getenv("CLOUD_PROXY_COUNTRY_CODE"),
+    cloud_timeout=int(os.getenv("CLOUD_TIMEOUT", 60)),
 )
 async def main(browser: Browser):
-	llm = ChatBrowserUse()
+    llm = ChatBrowserUse()
 
-	task = (
-		"Go to https://x.com/home, look at the following tab, and extract "
-		"the first 5 newest tweets with their metadata including author name, "
-		"author handle, content, timestamp, likes, and reposts. "
-		"Provide a brief summary of what these tweets are about."
-	)
+    task = (
+        "Go to https://x.com/home, look at the following tab, and extract "
+        "the first 5 newest tweets with their metadata including author name, "
+        "author handle, content, timestamp, likes, and reposts. "
+        "Provide a brief summary of what these tweets are about."
+    )
 
-	agent = Agent(
-		browser=browser,
-		task=task,
-		llm=llm,
-	)
+    agent = Agent(
+        browser=browser,
+        task=task,
+        llm=llm,
+    )
 
-	history = await agent.run()
+    history = await agent.run()
 
-	# Extract final result BEFORE returning (while still in sandbox)
-	return {"result": history.final_result() or "No result from agent"}
+    # Extract final result BEFORE returning (while still in sandbox)
+    return {"result": history.final_result() or "No result from agent"}
+
 
 async def run():
-	"""Wrapper function that calls main and writes results to file."""
-	output_file = Path("/tmp") / "x.py_result.json"
+    """Wrapper function that calls main and writes results to file."""
+    output_file = Path("/tmp") / "x.py_result.json"
 
-	try:
-		# Call the sandbox-decorated function (returns dict from sandbox)
-		result = await main()
+    try:
+        # Call the sandbox-decorated function (returns dict from sandbox)
+        result = await main()
 
-		result_data = {
-			"script": "x.py",
-			"success": bool(result and result.get("result")),
-			"result": result.get("result") if result else "No result returned from agent"
-		}
+        result_data = {
+            "script": "x.py",
+            "success": bool(result and result.get("result")),
+            "result": result.get("result")
+            if result
+            else "No result returned from agent",
+        }
 
-		with open(output_file, 'w') as f:
-			json.dump(result_data, f, indent=2)
+        with open(output_file, "w") as f:
+            json.dump(result_data, f, indent=2)
 
-	except Exception as e:
-		# Write error result
-		import traceback
-		error_data = {
-			"script": "x.py",
-			"success": False,
-			"result": f"Error: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
-		}
-		with open(output_file, 'w') as f:
-			json.dump(error_data, f, indent=2)
+    except Exception as e:
+        # Write error result
+        import traceback
+
+        error_data = {
+            "script": "x.py",
+            "success": False,
+            "result": f"Error: {str(e)}\n\nTraceback:\n{traceback.format_exc()}",
+        }
+        with open(output_file, "w") as f:
+            json.dump(error_data, f, indent=2)
+
 
 if __name__ == "__main__":
-	import asyncio
-	asyncio.run(run())
+    import asyncio
+
+    asyncio.run(run())
