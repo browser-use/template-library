@@ -29,6 +29,7 @@
 	"sandbox": {
 		"file": "sandbox/main.py",
 		"description": "Cloud browser automation with @sandbox decorator for persistent auth and proxy routing",
+		"featured": true,
 		"files": [
 			{
 				"source": "sandbox/main.py",
@@ -159,7 +160,6 @@
 	"job-application": {
 		"file": "job-application/main.py",
 		"description": "Automated job application form submission with resume upload",
-		"featured": true,
 		"files": [
 			{
 				"source": "job-application/main.py",
@@ -292,7 +292,6 @@
 	"llm-arena": {
 		"file": "llm-arena/main.py",
 		"description": "Compare different AI models side-by-side in LLM Arena",
-		"featured": true,
 		"files": [
 			{
 				"source": "llm-arena/main.py",
