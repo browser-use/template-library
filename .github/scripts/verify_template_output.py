@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Verify that template initialization created the expected files.
+Validate templates.json and verify that all referenced template files exist.
 
-Usage: python verify_template_output.py <template-name>
+Usage: python verify_template_output.py
 """
 
 import json
@@ -11,60 +11,90 @@ from pathlib import Path
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python verify_template_output.py <template-name>")
-        sys.exit(1)
-
-    template_name = sys.argv[1]
     repo_root = Path(__file__).parent.parent.parent
     templates_json = repo_root / 'templates.json'
 
-    # Load templates.json
-    with open(templates_json) as f:
-        templates = json.load(f)
-
-    if template_name not in templates:
-        print(f"✗ Template '{template_name}' not found in templates.json")
+    # Validate templates.json is valid JSON
+    try:
+        with open(templates_json) as f:
+            templates = json.load(f)
+        print(f"✓ templates.json is valid JSON")
+    except json.JSONDecodeError as e:
+        print(f"✗ templates.json is invalid JSON: {e}")
+        sys.exit(1)
+    except FileNotFoundError:
+        print(f"✗ templates.json not found")
         sys.exit(1)
 
-    config = templates[template_name]
-    template_dir = repo_root / 'test-env' / template_name
-
-    # Check if template directory was created
-    if not template_dir.exists():
-        print(f"✗ Template directory '{template_dir}' was not created")
-        sys.exit(1)
-
-    print(f"✓ Template directory created: {template_dir}")
-
-    # For simple templates, just check the output file exists
-    if 'files' not in config:
-        # Simple template - should have created test_output.py
-        output_file = template_dir / 'test_output.py'
-        if output_file.exists():
-            print(f"✓ Output file created: {output_file}")
-            sys.exit(0)
-        else:
-            print(f"✗ Output file not found: {output_file}")
-            sys.exit(1)
-
-    # For complex templates, check all expected files
     errors = []
-    for file_spec in config['files']:
-        dest = file_spec['dest']
-        expected_file = template_dir / dest
 
-        if expected_file.exists():
-            print(f"✓ File created: {dest}")
-        else:
-            errors.append(f"✗ Missing file: {dest}")
+    # Validate each template
+    for template_name, config in templates.items():
+        print(f"\nValidating template: {template_name}")
+
+        # Check required fields
+        if 'file' not in config:
+            errors.append(f"✗ {template_name}: missing 'file' field")
+            print(errors[-1])
+            continue
+
+        if 'description' not in config:
+            errors.append(f"✗ {template_name}: missing 'description' field")
             print(errors[-1])
 
+        # Check main file exists
+        main_file = repo_root / config['file']
+        if main_file.exists():
+            print(f"  ✓ Main file exists: {config['file']}")
+
+            # Try to compile Python files
+            if config['file'].endswith('.py'):
+                try:
+                    import py_compile
+                    py_compile.compile(main_file, doraise=True)
+                    print(f"  ✓ Python file compiles: {config['file']}")
+                except py_compile.PyCompileError as e:
+                    errors.append(f"✗ {template_name}: Python compilation error in {config['file']}: {e}")
+                    print(errors[-1])
+        else:
+            errors.append(f"✗ {template_name}: main file not found: {config['file']}")
+            print(errors[-1])
+
+        # Check all files in complex templates
+        if 'files' in config:
+            for file_spec in config['files']:
+                source = file_spec.get('source')
+                if not source:
+                    errors.append(f"✗ {template_name}: file spec missing 'source' field")
+                    print(errors[-1])
+                    continue
+
+                source_file = repo_root / source
+                if source_file.exists():
+                    print(f"  ✓ File exists: {source}")
+
+                    # Try to compile Python files
+                    if source.endswith('.py'):
+                        try:
+                            import py_compile
+                            py_compile.compile(source_file, doraise=True)
+                            print(f"  ✓ Python file compiles: {source}")
+                        except py_compile.PyCompileError as e:
+                            errors.append(f"✗ {template_name}: Python compilation error in {source}: {e}")
+                            print(errors[-1])
+                else:
+                    errors.append(f"✗ {template_name}: source file not found: {source}")
+                    print(errors[-1])
+
+    # Print summary
+    print("\n" + "="*50)
     if errors:
-        print(f"\n✗ {len(errors)} file(s) missing")
+        print(f"✗ Validation failed with {len(errors)} error(s)")
+        for error in errors:
+            print(f"  {error}")
         sys.exit(1)
     else:
-        print(f"\n✓ All {len(config['files'])} expected files created")
+        print(f"✓ All {len(templates)} template(s) validated successfully")
         sys.exit(0)
 
 
