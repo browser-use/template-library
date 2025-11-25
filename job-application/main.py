@@ -6,7 +6,7 @@ This script demonstrates:
 - File upload (resume/CV)
 - Cross-origin iframe handling
 - Structured output with detailed summary
-- Using o3 model for complex multi-step tasks
+- Using gemini-3-pro-preview model for complex multi-step tasks
 
 Example workflow:
 1. Navigate to job application page
@@ -23,7 +23,7 @@ import os
 
 from dotenv import load_dotenv
 
-from browser_use import Agent, Browser, ChatOpenAI, Tools
+from browser_use import Agent, Browser, ChatGoogle, Tools
 from browser_use.tools.views import UploadFileAction
 
 load_dotenv()
@@ -53,8 +53,8 @@ async def apply_to_job(applicant_info: dict, resume_path: str):
     }
     """
 
-    # Use o3 model for complex form filling tasks
-    llm = ChatOpenAI(model="o3")
+    # Use gemini-3-pro-preview model for complex form filling tasks
+    llm = ChatGoogle(model="gemini-3-pro-preview")
 
     tools = Tools()
 
