@@ -12,14 +12,14 @@ This template demonstrates automated job application submission for Rochester Re
 4. Complete demographic and optional fields
 5. Submit the application and confirm success
 
-The template uses OpenAI's `o3` model which excels at complex multi-step tasks like form filling.
+The template uses Google's `gemini-3-pro-preview` model which excels at complex multi-step tasks like form filling.
 
 ## Setup
 
 ### 1. Get Your API Key
 
-You'll need an OpenAI API key to use the o3 model:
-1. Go to [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+You'll need a Google Gemini API key to use the gemini-3-pro-preview model:
+1. Go to [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
 2. Create a new API key
 3. Copy the key
 
@@ -29,9 +29,9 @@ You'll need an OpenAI API key to use the o3 model:
 cp .env.example .env
 ```
 
-Edit `.env` and add your OpenAI API key:
+Edit `.env` and add your Google API key:
 ```bash
-OPENAI_API_KEY=sk-...
+GOOGLE_API_KEY=your-google-api-key-here
 ```
 
 ### 3. Install Dependencies
@@ -99,15 +99,15 @@ The agent follows a detailed 8-step process:
 7. **Date**: Today's date
 8. **Submit**: Click submit button and verify success
 
-### Why o3 Model?
+### Why gemini-3-pro-preview Model?
 
-This template uses OpenAI's `o3` model because:
+This template uses Google's `gemini-3-pro-preview` model because:
 - **Complex reasoning**: Job applications require understanding context and making decisions
 - **Multi-step planning**: The agent needs to plan and execute 8 sequential steps
 - **Form field detection**: Accurately identifies and fills the right fields
 - **Error handling**: Can adapt when fields don't match exactly
 
-**Note**: o3 is more expensive than other models. For simpler forms, you might want to try `gpt-4o` instead.
+**Note**: For simpler forms, you might want to try `gemini-flash-latest` instead for faster and cheaper processing.
 
 ### Cross-Origin iFrame Support
 
@@ -153,11 +153,12 @@ Steps:
 To use a different model, edit `main.py`:
 
 ```python
-# For cheaper but still capable:
-llm = ChatOpenAI(model='gpt-4o')
+# For faster and cheaper:
+llm = ChatGoogle(model='gemini-flash-latest')
 
-# For even cheaper:
-llm = ChatOpenAI(model='gpt-4o-mini')
+# For other providers like OpenAI:
+from browser_use import ChatOpenAI
+llm = ChatOpenAI(model='gpt-4o')
 ```
 
 ## Troubleshooting
@@ -174,11 +175,11 @@ llm = ChatOpenAI(model='gpt-4o-mini')
 - **File path**: Use absolute paths or ensure the file is in the correct location
 - **File permissions**: Make sure the resume file is readable
 
-### o3 API Errors
+### Gemini API Errors
 
-- **Rate limits**: o3 has stricter rate limits. Wait a few minutes between runs
-- **Costs**: Check your OpenAI usage to ensure you haven't hit spending limits
-- **API key**: Verify your API key is correct and has access to o3
+- **Rate limits**: If you hit rate limits, wait a few minutes between runs
+- **Quota**: Check your Google Cloud quota to ensure you haven't hit limits
+- **API key**: Verify your API key is correct and has Gemini API access enabled
 
 ### Form Fields Changed
 
@@ -191,13 +192,13 @@ Job application forms change frequently. If the template stops working:
 
 ## Model Costs
 
-The o3 model is OpenAI's most capable model but also more expensive:
-- Input: Higher cost per token
-- Output: Higher cost per token
+The gemini-3-pro-preview model offers competitive pricing:
+- Google Gemini API has generous free tier for development
+- Production usage is cost-effective compared to other frontier models
 
-A typical job application might cost $1-3 depending on form complexity. Budget accordingly if applying to multiple positions.
+A typical job application uses moderate tokens. For high-volume usage, consider the free tier limits and pricing structure.
 
-For reference on costs and capabilities, see: [https://openai.com/pricing](https://openai.com/pricing)
+For reference on costs and capabilities, see: [https://ai.google.dev/pricing](https://ai.google.dev/pricing)
 
 ## Advanced Usage
 
