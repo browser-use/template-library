@@ -184,6 +184,7 @@ Use standard two-letter ISO country codes (e.g., `us`, `uk`, `de`, `jp`, `au`, `
 - [Browser-Use Documentation](https://docs.browser-use.com)
 - [Cloud Sandbox Guide](https://docs.browser-use.com/cloud/sandbox)
 - [Cloud Profiles](https://docs.browser-use.com/cloud/profiles)
+- [Browser Use Box](https://browser-use.com/bux) - run Browser Use agents from an always-on VPS with Telegram control. [Watch the demo](https://www.tiktok.com/@browser_use/video/7639824093721758989).
 
 ## License
 
