@@ -147,15 +147,24 @@ def _reject_url(url: str) -> str | None:
 
 
 async def _quote_usd(url: str) -> float | None:
-    """Ask an endpoint what it costs. A bare 402 quote is free and settles nothing."""
+    """Ask an endpoint what it costs. A bare 402 quote is free and settles nothing.
+
+    Matches the same asset the payment policy will accept, not just the same
+    network. Reading an amount denominated in some other Base token and dividing
+    it by USDC's decimals would print a confident and meaningless dollar figure,
+    for a challenge the buy path is going to refuse anyway.
+    """
     try:
         async with httpx.AsyncClient(timeout=30) as client:
             r = await client.get(url)
         if r.status_code != 402:
             return None
         for accept in r.json().get("accepts", []):
-            if accept.get("network") == BASE_NETWORK:
-                return int(accept["amount"]) / USDC_UNITS
+            if accept.get("network") != BASE_NETWORK:
+                continue
+            if str(accept.get("asset", "")).lower() != BASE_USDC:
+                continue
+            return int(accept["amount"]) / USDC_UNITS
     except Exception:
         return None
     return None
