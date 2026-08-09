@@ -10,9 +10,11 @@ is the identity. The private key stays in an env var; the LLM never sees it.
 
 Three controls live in code, not in the prompt, so the agent cannot talk its way
 past them:
-  - host allowlist: pulse_buy refuses any URL outside PulseNetwork
+  - host allowlist: every tool that makes an outbound request refuses any URL
+    that is not an https PulseNetwork endpoint, the free ones included
   - per-call cap and session budget: enforced as an x402 payment policy, so the
-    cap is checked against the 402 challenge that is actually signed
+    caps are checked against the 402 challenge that is actually signed, and
+    against USDC on Base specifically, since that is the unit they count in
   - a lock around the buy path, so two concurrent calls cannot both spend the
     last of the budget
 
@@ -35,8 +37,15 @@ load_dotenv()
 
 CATALOG_URL = "https://pulse.theaslangroupllc.com/api/catalog"
 ALLOWED_HOST_SUFFIX = ".theaslangroupllc.com"
-BASE_NETWORK = "eip155:8453"  # USDC on Base, 6 decimals
+BASE_NETWORK = "eip155:8453"
+# The caps are counted in USDC's 6 decimals, so the asset has to be pinned too.
+# The same number of atomic units in an 8-decimal or 18-decimal token would be a
+# completely different amount of money, and the cap would not notice.
+BASE_USDC = "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
 USDC_UNITS = 10**6
+
+# Must match the placeholder shipped in .env.example.template.
+PLACEHOLDER_KEY_PREFIX = "0xyour"
 
 MAX_PER_CALL_USD = float(os.getenv("PULSE_MAX_PER_CALL_USD", "0.50"))
 SESSION_BUDGET_USD = float(os.getenv("PULSE_SESSION_BUDGET_USD", "2.00"))
@@ -67,6 +76,12 @@ class _PaymentGuard:
         keep = []
         for req in requirements:
             if getattr(req, "network", None) != BASE_NETWORK:
+                continue
+            if str(getattr(req, "asset", "")).lower() != BASE_USDC:
+                self.refusal = (
+                    "the endpoint asked to be paid in a token other than USDC on Base, "
+                    "which the budget caps cannot price"
+                )
                 continue
             amount = int(req.get_amount())
             if amount > self._allowance_atomic:
@@ -110,6 +125,25 @@ def _describe(entry: dict) -> str:
     if len(params) > MAX_PARAMS_SHOWN:
         lines.append(f"      - plus {len(params) - MAX_PARAMS_SHOWN} more optional parameters")
     return "\n".join(lines)
+
+
+def _reject_url(url: str) -> str | None:
+    """Refusal message if this URL is not a PulseNetwork endpoint, else None.
+
+    Every tool that makes an outbound request runs this, not just the paying one.
+    The agent reads live web pages while it works, so a page can try to talk it
+    into fetching an internal address; a free tool with no allowlist would still
+    make that request on the agent's behalf.
+    """
+    try:
+        parsed = httpx.URL(url)
+    except Exception:
+        return f"Refused: {url!r} is not a usable URL."
+    if parsed.scheme != "https":
+        return "Refused: only https PulseNetwork URLs are allowed."
+    if not (parsed.host or "").endswith(ALLOWED_HOST_SUFFIX):
+        return "Refused: these tools only reach PulseNetwork endpoints."
+    return None
 
 
 async def _quote_usd(url: str) -> float | None:
@@ -165,6 +199,9 @@ async def pulse_catalog(query: str) -> ActionResult:
     description="Check the exact USD price of a PulseNetwork endpoint before buying. Free."
 )
 async def pulse_price(url: str) -> ActionResult:
+    refusal = _reject_url(url)
+    if refusal:
+        return ActionResult(extracted_content=refusal)
     price = await _quote_usd(url)
     if price is None:
         return ActionResult(extracted_content="No USDC-on-Base x402 quote at that URL.")
@@ -183,21 +220,19 @@ async def pulse_price(url: str) -> ActionResult:
     )
 )
 async def pulse_buy(url: str) -> ActionResult:
-    try:
-        host = httpx.URL(url).host or ""
-    except Exception:
-        return ActionResult(extracted_content=f"Refused: {url!r} is not a usable URL.")
-    if not host.endswith(ALLOWED_HOST_SUFFIX):
-        return ActionResult(
-            extracted_content="Refused: this tool only pays PulseNetwork endpoints."
-        )
+    refusal = _reject_url(url)
+    if refusal:
+        return ActionResult(extracted_content=refusal)
 
-    key = os.getenv("PULSE_WALLET_KEY")
-    if not key:
+    key = (os.getenv("PULSE_WALLET_KEY") or "").strip()
+    # The shipped .env.example carries a placeholder, so an unedited copy has to
+    # read as "not configured" rather than as a broken key.
+    if not key or key.lower().startswith(PLACEHOLDER_KEY_PREFIX):
         return ActionResult(
             extracted_content=(
                 "Refused: PULSE_WALLET_KEY is not set, so no payment is possible. "
-                "Copy .env.example to .env and add a funded throwaway wallet key."
+                "Copy .env.example to .env and replace the placeholder with a funded "
+                "throwaway wallet key."
             )
         )
     try:

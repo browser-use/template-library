@@ -27,11 +27,18 @@ $0.015.
 The limits are in the code, not in the prompt, so the agent cannot be talked
 past them by a web page or by its own reasoning:
 
-- **Host allowlist.** `pulse_buy` refuses any URL outside PulseNetwork.
+- **Host allowlist.** Every tool that makes an outbound request refuses any URL
+  that is not an https PulseNetwork endpoint, the free ones included. The agent
+  reads live web pages while it works, so a page must not be able to talk it
+  into fetching an internal address on the agent's behalf.
 - **Per-call cap and session budget.** Enforced as an x402 payment policy, which
   inspects the 402 challenge that is actually being signed. A price that changes
   between the quote and the payment cannot slip through, because the quote is
   not what authorizes the spend.
+- **USDC on Base only.** The caps are counted in USDC's six decimals, so the
+  policy pins the asset as well as the network. The same number of atomic units
+  in a token with different decimals would be a different amount of money, and
+  an unpinned cap would not notice.
 - **A lock around the buy path**, so two concurrent tool calls cannot both spend
   the last of the budget.
 - **The key never reaches the model.** It is read from the environment inside the
@@ -96,7 +103,9 @@ buy a fact that the page does not contain, and act on both.
 
 | What you see | What it means |
 | --- | --- |
-| `Refused: PULSE_WALLET_KEY is not set` | No `.env`, or the key line is still the placeholder. |
+| `Refused: PULSE_WALLET_KEY is not set` | No `.env`, or the key line is still the shipped placeholder. |
+| `Refused: PULSE_WALLET_KEY is not a valid private key` | The key is set to something that is not a 0x private key. |
+| `Refused: these tools only reach PulseNetwork endpoints` | The agent tried a URL outside PulseNetwork. Working as intended. |
 | `Refused, nothing was paid: the endpoint asked for $X` | The price is above your remaining allowance. Raise the cap or pick a cheaper endpoint. |
 | `Refused: the session budget is spent` | Restart the process, or raise `PULSE_SESSION_BUDGET_USD`. |
 | `The payment did not complete` | Usually an unfunded wallet. Check the USDC balance on Base. |
