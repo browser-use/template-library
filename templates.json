@@ -592,8 +592,61 @@
 		}
 	},
 	"pulsenetwork-data": {
-		"file": "pulsenetwork_data_template.py",
+		"file": "pulsenetwork-data/main.py",
 		"description": "Agent buys live data mid-task with x402 micropayments (token safety, markets, 950+ endpoints) - USDC on Base, no API keys, code-enforced budget caps",
+		"files": [
+			{
+				"source": "pulsenetwork-data/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "pulsenetwork-data/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "pulsenetwork-data/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "pulsenetwork-data/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": [
+					"cd {template}"
+				]
+			},
+			{
+				"title": "Set up your payment wallet and model key",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env: add PULSE_WALLET_KEY and OPENAI_API_KEY"
+				],
+				"note": "(PULSE_WALLET_KEY is a THROWAWAY key holding a few USDC on Base. PulseNetwork has no signup and no API key.)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": [
+					"uv sync"
+				]
+			},
+			{
+				"title": "Run the agent",
+				"commands": [
+					"uv run {output}"
+				]
+			},
+			{
+				"footer": "\ud83d\udcb8 Spending is capped in code: $0.50 per call and $2.00 per session by default, tunable in .env\n\n\ud83d\udd0e Browse the catalog free at https://pulse.theaslangroupllc.com/llms.txt\n\n\ud83d\udcd6 See README.md for the safety controls and troubleshooting"
+			}
+		],
 		"author": {
 			"name": "PulseNetwork",
 			"github_profile": "https://github.com/GTCC777",
