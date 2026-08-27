@@ -18,7 +18,8 @@ Configuration is loaded from environment variables via .env file:
 - CLOUD_TIMEOUT: Maximum browser session time in minutes
 """
 
-from browser_use import Agent, Browser, ChatBrowserUse, sandbox
+from browser_use import Agent, Browser, ChatBrowserUse
+from browser_use.sandbox import sandbox
 from dotenv import load_dotenv
 import os
 import json
