@@ -530,7 +530,7 @@
 				"commands": ["uv run {output}"]
 			},
 			{
-				"footer": "📖 See README.md for adding custom agents, configuration, and troubleshooting\n\n🔄 The scheduler will auto-discover all .py files in the agents/ directory\n\n📦 For an always-on VPS with Telegram control, see Browser Use Box: https://browser-use.com/bux"
+				"footer": "📖 See README.md for adding custom agents, configuration, and troubleshooting\n\n🔄 The scheduler will auto-discover all .py files in the agents/ directory"
 			}
 		],
 		"author": {
