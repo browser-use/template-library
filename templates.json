@@ -55,7 +55,9 @@
 		"next_steps": [
 			{
 				"title": "Navigate to project directory",
-				"commands": ["cd {template}"]
+				"commands": [
+					"cd {template}"
+				]
 			},
 			{
 				"title": "Set up your API key",
@@ -75,14 +77,18 @@
 			},
 			{
 				"title": "Install dependencies",
-				"commands": ["uv sync"]
+				"commands": [
+					"uv sync"
+				]
 			},
 			{
 				"title": "Run the script",
-				"commands": ["uv run {output}"]
+				"commands": [
+					"uv run {output}"
+				]
 			},
 			{
-				"footer": "📖 See README.md for cloud configuration options and troubleshooting"
+				"footer": "\ud83d\udcd6 See README.md for cloud configuration options and troubleshooting"
 			}
 		],
 		"author": {
@@ -124,7 +130,9 @@
 		"next_steps": [
 			{
 				"title": "Navigate to project directory",
-				"commands": ["cd {template}"]
+				"commands": [
+					"cd {template}"
+				]
 			},
 			{
 				"title": "Set up your API key",
@@ -136,19 +144,25 @@
 			},
 			{
 				"title": "Install dependencies",
-				"commands": ["uv sync"]
+				"commands": [
+					"uv sync"
+				]
 			},
 			{
 				"title": "Launch Chrome with debugging (in a separate terminal)",
-				"commands": ["python launch_chrome_debug.py"],
+				"commands": [
+					"python launch_chrome_debug.py"
+				],
 				"note": "(Run with --help to see options like --profile)\n(Keep this terminal open!)"
 			},
 			{
 				"title": "Run your script (in a NEW terminal)",
-				"commands": ["cd {template} && uv run {output}"]
+				"commands": [
+					"cd {template} && uv run {output}"
+				]
 			},
 			{
-				"footer": "📖 See README.md for detailed instructions"
+				"footer": "\ud83d\udcd6 See README.md for detailed instructions"
 			}
 		],
 		"author": {
@@ -194,7 +208,9 @@
 		"next_steps": [
 			{
 				"title": "Navigate to project directory",
-				"commands": ["cd {template}"]
+				"commands": [
+					"cd {template}"
+				]
 			},
 			{
 				"title": "Set up your API key",
@@ -206,7 +222,9 @@
 			},
 			{
 				"title": "Install dependencies",
-				"commands": ["uv sync"]
+				"commands": [
+					"uv sync"
+				]
 			},
 			{
 				"title": "Customize your data",
@@ -217,10 +235,12 @@
 			},
 			{
 				"title": "Run the application",
-				"commands": ["uv run {output} --resume example_resume.pdf"]
+				"commands": [
+					"uv run {output} --resume example_resume.pdf"
+				]
 			},
 			{
-				"footer": "📖 See README.md for customization and troubleshooting"
+				"footer": "\ud83d\udcd6 See README.md for customization and troubleshooting"
 			}
 		],
 		"author": {
@@ -261,7 +281,9 @@
 		"next_steps": [
 			{
 				"title": "Navigate to project directory",
-				"commands": ["cd {template}"]
+				"commands": [
+					"cd {template}"
+				]
 			},
 			{
 				"title": "Set up your API keys",
@@ -273,18 +295,22 @@
 			},
 			{
 				"title": "Install dependencies",
-				"commands": ["uv sync"]
+				"commands": [
+					"uv sync"
+				]
 			},
 			{
 				"title": "Run the script",
-				"commands": ["uv run {output}"]
+				"commands": [
+					"uv run {output}"
+				]
 			},
 			{
-				"footer": "📖 See README.md for customization and advanced usage"
+				"footer": "\ud83d\udcd6 See README.md for customization and advanced usage"
 			}
 		],
 		"author": {
-			"name": "Magnus Müller",
+			"name": "Magnus M\u00fcller",
 			"github_profile": "https://github.com/MagMueller",
 			"last_modified_date": "2025-11-11"
 		}
@@ -317,7 +343,9 @@
 		"next_steps": [
 			{
 				"title": "Navigate to project directory",
-				"commands": ["cd {template}"]
+				"commands": [
+					"cd {template}"
+				]
 			},
 			{
 				"title": "Set up your API keys",
@@ -329,14 +357,18 @@
 			},
 			{
 				"title": "Install dependencies",
-				"commands": ["uv sync"]
+				"commands": [
+					"uv sync"
+				]
 			},
 			{
 				"title": "Run the comparison",
-				"commands": ["uv run {output}"]
+				"commands": [
+					"uv run {output}"
+				]
 			},
 			{
-				"footer": "📖 See README.md for customization and advanced usage\n\n⚡ Enter a task and watch LLMs race to complete it!"
+				"footer": "\ud83d\udcd6 See README.md for customization and advanced usage\n\n\u26a1 Enter a task and watch LLMs race to complete it!"
 			}
 		],
 		"author": {
@@ -377,7 +409,9 @@
 		"next_steps": [
 			{
 				"title": "Navigate to project directory",
-				"commands": ["cd {template}"]
+				"commands": [
+					"cd {template}"
+				]
 			},
 			{
 				"title": "Set up your API keys",
@@ -389,7 +423,9 @@
 			},
 			{
 				"title": "Install dependencies",
-				"commands": ["uv sync"]
+				"commands": [
+					"uv sync"
+				]
 			},
 			{
 				"title": "Create and configure Slack app",
@@ -400,15 +436,19 @@
 			},
 			{
 				"title": "Start ngrok tunnel (for local development)",
-				"commands": ["ngrok http 8000"],
+				"commands": [
+					"ngrok http 8000"
+				],
 				"note": "(Keep this terminal open and copy the HTTPS URL)"
 			},
 			{
 				"title": "Run the application (in a NEW terminal)",
-				"commands": ["cd {template} && uv run app/main.py"]
+				"commands": [
+					"cd {template} && uv run app/main.py"
+				]
 			},
 			{
-				"footer": "📖 See README.md for detailed setup, Event Subscriptions configuration, and production deployment"
+				"footer": "\ud83d\udcd6 See README.md for detailed setup, Event Subscriptions configuration, and production deployment"
 			}
 		],
 		"author": {
@@ -446,7 +486,9 @@
 		"next_steps": [
 			{
 				"title": "Navigate to project directory",
-				"commands": ["cd {template}"]
+				"commands": [
+					"cd {template}"
+				]
 			},
 			{
 				"title": "Set up your API key",
@@ -458,14 +500,18 @@
 			},
 			{
 				"title": "Install dependencies",
-				"commands": ["uv sync"]
+				"commands": [
+					"uv sync"
+				]
 			},
 			{
 				"title": "Run the job scraper",
-				"commands": ["uv run {output}"]
+				"commands": [
+					"uv run {output}"
+				]
 			},
 			{
-				"footer": "📖 See README.md for customization and troubleshooting\n\n🤖 CodeAgent will generate extraction code and save it to script.ipynb"
+				"footer": "\ud83d\udcd6 See README.md for customization and troubleshooting\n\n\ud83e\udd16 CodeAgent will generate extraction code and save it to script.ipynb"
 			}
 		],
 		"author": {
@@ -511,7 +557,9 @@
 		"next_steps": [
 			{
 				"title": "Navigate to project directory",
-				"commands": ["cd {template}"]
+				"commands": [
+					"cd {template}"
+				]
 			},
 			{
 				"title": "Set up your API key and cloud settings",
@@ -523,20 +571,86 @@
 			},
 			{
 				"title": "Install dependencies",
-				"commands": ["uv sync"]
+				"commands": [
+					"uv sync"
+				]
 			},
 			{
 				"title": "Run the scheduler",
-				"commands": ["uv run {output}"]
+				"commands": [
+					"uv run {output}"
+				]
 			},
 			{
-				"footer": "📖 See README.md for adding custom agents, configuration, and troubleshooting\n\n🔄 The scheduler will auto-discover all .py files in the agents/ directory\n\n📦 For an always-on VPS with Telegram control, see Browser Use Box: https://browser-use.com/bux"
+				"footer": "\ud83d\udcd6 See README.md for adding custom agents, configuration, and troubleshooting\n\n\ud83d\udd04 The scheduler will auto-discover all .py files in the agents/ directory\n\n\ud83d\udce6 For an always-on VPS with Telegram control, see Browser Use Box: https://browser-use.com/bux"
 			}
 		],
 		"author": {
 			"name": "Shawn Pana",
 			"github_profile": "https://github.com/ShawnPana",
 			"last_modified_date": "2025-11-14"
+		}
+	},
+	"pulsenetwork-data": {
+		"file": "pulsenetwork-data/main.py",
+		"description": "Agent buys live data mid-task with x402 micropayments (token safety, markets, 950+ endpoints) - USDC on Base, no API keys, code-enforced budget caps",
+		"files": [
+			{
+				"source": "pulsenetwork-data/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "pulsenetwork-data/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "pulsenetwork-data/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "pulsenetwork-data/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": [
+					"cd {template}"
+				]
+			},
+			{
+				"title": "Set up your payment wallet and model key",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env: add PULSE_WALLET_KEY and OPENAI_API_KEY"
+				],
+				"note": "(PULSE_WALLET_KEY is a THROWAWAY key holding a few USDC on Base. PulseNetwork has no signup and no API key.)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": [
+					"uv sync"
+				]
+			},
+			{
+				"title": "Run the agent",
+				"commands": [
+					"uv run {output}"
+				]
+			},
+			{
+				"footer": "\ud83d\udcb8 Spending is capped in code: $0.50 per call and $2.00 per session by default, tunable in .env\n\n\ud83d\udd0e Browse the catalog free at https://pulse.theaslangroupllc.com/llms.txt\n\n\ud83d\udcd6 See README.md for the safety controls and troubleshooting"
+			}
+		],
+		"author": {
+			"name": "PulseNetwork",
+			"github_profile": "https://github.com/GTCC777",
+			"last_modified_date": "2026-08-09"
 		}
 	}
 }
