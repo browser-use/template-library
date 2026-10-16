@@ -46,6 +46,8 @@ async def main() -> None:
         use_vision=False,  # keep typed secrets out of screenshots sent to the LLM
     )
     history = await agent.run()
+    if not history.is_successful():
+        raise SystemExit(f"Agent did not succeed: {history.final_result()}")
     print(history.final_result())
 
 

@@ -19,6 +19,8 @@ async def main() -> None:
         browser=browser,
     )
     history = await agent.run()
+    if not history.is_successful():
+        raise SystemExit(f"Agent did not succeed: {history.final_result()}")
     print(history.final_result())
 
 

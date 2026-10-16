@@ -11,7 +11,7 @@ load_dotenv()
 
 JOBS = 50
 # New projects can run 10 browsers at once; the limit rises with spend (50 at $100).
-CONCURRENCY = int(os.getenv("CONCURRENCY", "10"))
+CONCURRENCY = max(1, int(os.getenv("CONCURRENCY", "10")))
 URL = "https://en.wikipedia.org/wiki/Special:Random"
 
 
