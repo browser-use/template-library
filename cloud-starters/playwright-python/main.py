@@ -10,8 +10,8 @@ load_dotenv()
 def main() -> None:
     with BrowserUse() as client:  # reads BROWSER_USE_API_KEY
         session = client.browsers.create(proxy_country_code="us")
-        print(f"Live view: {session.live_url}")
         try:
+            print(f"Live view: {session.live_url}")
             if not session.cdp_url:
                 raise RuntimeError("The browser did not return a CDP URL")
             with sync_playwright() as p:
@@ -19,7 +19,11 @@ def main() -> None:
                 # Reuse the existing context so profile cookies and settings apply.
                 context = browser.contexts[0]
                 page = context.pages[0] if context.pages else context.new_page()
-                page.goto("https://news.ycombinator.com")
+                response = page.goto("https://news.ycombinator.com")
+                if response is None or not response.ok:
+                    raise RuntimeError(
+                        f"HTTP {response.status if response else 'none'}"
+                    )
                 print(page.title())
         finally:
             # Closing Playwright only drops the CDP connection.
