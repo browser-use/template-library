@@ -38,6 +38,16 @@ uvx browser-use init --template job-application
 uvx browser-use init --template agentmail
 ```
 
+## Browser Use Cloud starters
+
+[`cloud-starters/`](cloud-starters) has small examples that run on Browser Use Cloud browsers ($0.02 per browser-hour, billed per second): Playwright and Puppeteer over CDP (TypeScript and Python), the browser-use `Agent` with `Browser(use_cloud=True)`, the hosted v4 agent API, 50 parallel browsers, a password + TOTP 2FA login saved to a profile, and scraping through proxies.
+
+```bash
+uvx browser-use init --template cloud-playwright
+```
+
+The two TypeScript starters are plain npm projects in the same folder (not installed by `init`, which writes Python files).
+
 ## Testing Templates Locally
 
 To test your templates before submitting a PR, you can modify the browser-use CLI to use your fork/branch:

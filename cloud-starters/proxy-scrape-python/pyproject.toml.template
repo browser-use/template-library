@@ -1,0 +1,10 @@
+[project]
+name = "browser-use-cloud-proxy-scrape"
+version = "0.1.0"
+description = "Scraping through residential or custom proxies on Browser Use Cloud"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use-sdk>=3.11.3,<5",
+    "playwright>=1.64.0",
+    "python-dotenv>=1.2.0",
+]

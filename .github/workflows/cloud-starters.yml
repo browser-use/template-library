@@ -1,0 +1,69 @@
+name: cloud-starters
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'cloud-starters/**'
+      - '.github/workflows/cloud-starters.yml'
+  pull_request:
+    paths:
+      - 'cloud-starters/**'
+      - '.github/workflows/cloud-starters.yml'
+  schedule:
+    # Weekly: catch breaking releases of browser-use-sdk, browser-use, Playwright, Puppeteer
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  typescript:
+    name: typecheck (${{ matrix.starter }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        starter: [playwright-ts, puppeteer-ts]
+    defaults:
+      run:
+        working-directory: cloud-starters/${{ matrix.starter }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - run: npm run typecheck
+
+  python:
+    name: typecheck (${{ matrix.starter }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        starter:
+          - playwright-python
+          - agent-python
+          - v4-agent-python
+          - parallel-python
+          - login-2fa-python
+          - proxy-scrape-python
+    defaults:
+      run:
+        working-directory: cloud-starters/${{ matrix.starter }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Install the starter's dependencies
+        run: |
+          cp pyproject.toml.template pyproject.toml
+          uv sync --python 3.12
+      - name: Type-check against the installed SDK
+        run: uvx pyright --pythonpath .venv/bin/python main.py

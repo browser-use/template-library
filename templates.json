@@ -91,6 +91,324 @@
 			"last_modified_date": "2025-11-13"
 		}
 	},
+	"cloud-playwright": {
+		"file": "cloud-starters/playwright-python/main.py",
+		"description": "Playwright (Python) connected to a Browser Use Cloud browser over CDP",
+		"files": [
+			{
+				"source": "cloud-starters/playwright-python/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "cloud-starters/playwright-python/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "cloud-starters/playwright-python/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "cloud-starters/playwright-python/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": ["cp .env.example .env", "# Edit .env and add your BROWSER_USE_API_KEY"],
+				"note": "(Get your key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the script",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "Cloud browsers cost $0.02 per browser-hour, billed per second. See README.md for details"
+			}
+		],
+		"author": {
+			"name": "Gregor Zunic",
+			"github_profile": "https://github.com/gregpr07",
+			"last_modified_date": "2026-10-16"
+		}
+	},
+	"cloud-agent": {
+		"file": "cloud-starters/agent-python/main.py",
+		"description": "browser-use Agent on a hosted cloud browser with Browser(use_cloud=True)",
+		"files": [
+			{
+				"source": "cloud-starters/agent-python/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "cloud-starters/agent-python/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "cloud-starters/agent-python/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "cloud-starters/agent-python/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": ["cp .env.example .env", "# Edit .env and add your BROWSER_USE_API_KEY"],
+				"note": "(Get your key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the script",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "Cloud browsers cost $0.02 per browser-hour, billed per second. See README.md for details"
+			}
+		],
+		"author": {
+			"name": "Gregor Zunic",
+			"github_profile": "https://github.com/gregpr07",
+			"last_modified_date": "2026-10-16"
+		}
+	},
+	"cloud-v4-agent": {
+		"file": "cloud-starters/v4-agent-python/main.py",
+		"description": "Hosted Browser Use agent via API v4: send a task, get the result",
+		"files": [
+			{
+				"source": "cloud-starters/v4-agent-python/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "cloud-starters/v4-agent-python/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "cloud-starters/v4-agent-python/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "cloud-starters/v4-agent-python/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": ["cp .env.example .env", "# Edit .env and add your BROWSER_USE_API_KEY"],
+				"note": "(Get your key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the script",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "Cloud browsers cost $0.02 per browser-hour, billed per second. See README.md for details"
+			}
+		],
+		"author": {
+			"name": "Gregor Zunic",
+			"github_profile": "https://github.com/gregpr07",
+			"last_modified_date": "2026-10-16"
+		}
+	},
+	"cloud-parallel": {
+		"file": "cloud-starters/parallel-python/main.py",
+		"description": "50 jobs on parallel cloud browsers with asyncio and Playwright",
+		"files": [
+			{
+				"source": "cloud-starters/parallel-python/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "cloud-starters/parallel-python/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "cloud-starters/parallel-python/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "cloud-starters/parallel-python/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": ["cp .env.example .env", "# Edit .env and add your BROWSER_USE_API_KEY (optional: CONCURRENCY)"],
+				"note": "(Get your key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the script",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "Cloud browsers cost $0.02 per browser-hour, billed per second. See README.md for details"
+			}
+		],
+		"author": {
+			"name": "Gregor Zunic",
+			"github_profile": "https://github.com/gregpr07",
+			"last_modified_date": "2026-10-16"
+		}
+	},
+	"cloud-login-2fa": {
+		"file": "cloud-starters/login-2fa-python/main.py",
+		"description": "Password + TOTP 2FA login on a cloud browser, saved to a cloud profile",
+		"files": [
+			{
+				"source": "cloud-starters/login-2fa-python/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "cloud-starters/login-2fa-python/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "cloud-starters/login-2fa-python/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "cloud-starters/login-2fa-python/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": ["cp .env.example .env", "# Edit .env: BROWSER_USE_API_KEY, LOGIN_DOMAIN, LOGIN_URL, SITE_USERNAME, SITE_PASSWORD, SITE_TOTP_SECRET"],
+				"note": "(Get your key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the script",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "Cloud browsers cost $0.02 per browser-hour, billed per second. See README.md for details"
+			}
+		],
+		"author": {
+			"name": "Gregor Zunic",
+			"github_profile": "https://github.com/gregpr07",
+			"last_modified_date": "2026-10-16"
+		}
+	},
+	"cloud-proxy-scrape": {
+		"file": "cloud-starters/proxy-scrape-python/main.py",
+		"description": "Scraping through residential proxies by country, or your own proxy",
+		"files": [
+			{
+				"source": "cloud-starters/proxy-scrape-python/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "cloud-starters/proxy-scrape-python/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "cloud-starters/proxy-scrape-python/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "cloud-starters/proxy-scrape-python/README.md",
+				"dest": "README.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API key",
+				"commands": ["cp .env.example .env", "# Edit .env and add your BROWSER_USE_API_KEY (optional: PROXY_COUNTRIES or PROXY_HOST)"],
+				"note": "(Get your key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the script",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "Cloud browsers cost $0.02 per browser-hour, billed per second. See README.md for details"
+			}
+		],
+		"author": {
+			"name": "Gregor Zunic",
+			"github_profile": "https://github.com/gregpr07",
+			"last_modified_date": "2026-10-16"
+		}
+	},
 	"shopping": {
 		"file": "shopping/main.py",
 		"description": "E-commerce automation with structured output (Pydantic models)",

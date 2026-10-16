@@ -23,6 +23,7 @@ jobs:
           uvx ruff check --no-fix --select PLE \
             *_template.py \
             */main.py \
+            cloud-starters/*/main.py \
             */email_tools.py \
             */launch_chrome_debug.py \
             */app/*.py
@@ -38,6 +39,7 @@ jobs:
           uvx ruff format --check \
             *_template.py \
             */main.py \
+            cloud-starters/*/main.py \
             */email_tools.py \
             */launch_chrome_debug.py \
             */app/*.py

@@ -1,0 +1,10 @@
+[project]
+name = "browser-use-cloud-parallel"
+version = "0.1.0"
+description = "50 parallel jobs on Browser Use Cloud browsers"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use-sdk>=3.11.3,<5",
+    "playwright>=1.64.0",
+    "python-dotenv>=1.2.0",
+]
