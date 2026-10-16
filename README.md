@@ -8,6 +8,7 @@ Template collection for the `browser-use` CLI init command.
 .
 ├── templates.json               # Template registry and metadata
 ├── gitignore.template           # Shared .gitignore for complex templates
+├── AGENTS.md.template           # Shared AGENTS.md for coding agents (every template)
 │
 ├── Simple Templates (single Python files)
 ├── default_template.py          # Example: Minimal setup
@@ -63,6 +64,15 @@ This allows you to verify:
 - ✓ Variable substitution works (`{template}`, `{output}`)
 
 ## Adding New Templates
+
+Every template ships `AGENTS.md.template` as `AGENTS.md`, so coding agents that read AGENTS.md (Codex, Cursor and others) see how to run locally vs on Browser Use Cloud. Add this to the template's `files` array:
+
+```json
+{
+    "source": "AGENTS.md.template",
+    "dest": "AGENTS.md"
+}
+```
 
 ### Simple Template (Single File)
 
