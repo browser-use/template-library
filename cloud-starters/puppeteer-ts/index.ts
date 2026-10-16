@@ -9,7 +9,8 @@ const session = await client.browsers.create({ proxyCountryCode: "us", timeout: 
 try {
   console.log(`Live view: ${session.liveUrl}`);
   if (!session.cdpUrl) throw new Error("The browser did not return a CDP URL");
-  const browser = await puppeteer.connect({ browserWSEndpoint: session.cdpUrl });
+  // cdpUrl is an https:// address; browserURL resolves its websocket via /json/version.
+  const browser = await puppeteer.connect({ browserURL: session.cdpUrl });
   try {
     // Reuse the existing context so profile cookies and managed settings apply.
     const context = browser.defaultBrowserContext();
