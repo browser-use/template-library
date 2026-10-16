@@ -20,8 +20,9 @@ async def run_job(
 ) -> str:
     async with slots:
         # Wikipedia needs no residential proxy; turning it off lowers traffic cost.
+        # timeout (minutes) is a backstop: the browser stops itself even if stop() fails.
         session = await client.browsers.create(
-            proxy_country_code=None, metadata={"job": str(job)}
+            proxy_country_code=None, timeout=5, metadata={"job": str(job)}
         )
         try:
             if not session.cdp_url:
@@ -29,7 +30,11 @@ async def run_job(
             browser = await pw.chromium.connect_over_cdp(session.cdp_url)
             context = browser.contexts[0]
             page = context.pages[0] if context.pages else await context.new_page()
-            await page.goto(URL)
+            response = await page.goto(URL)
+            if response is None or not response.ok:
+                raise RuntimeError(
+                    f"HTTP {response.status if response else 'no response'}"
+                )
             return await page.title()
         finally:
             await client.browsers.stop(session.id)

@@ -15,7 +15,11 @@ def main() -> None:
         print(f"Run {run.id} started (session {run.session_id})")
 
         # Polls the status endpoint until the run completes, fails or is cancelled.
-        result = client.runs.wait_for_completion(run.id)
+        try:
+            result = client.runs.wait_for_completion(run.id)
+        except BaseException:
+            client.runs.cancel(run.id)  # stop paid work on Ctrl+C or a polling error
+            raise
         print(f"Status: {result.status.value}")
         print(f"Result: {result.result}")
         print(f"Cost: ${result.total_cost_usd}")

@@ -18,7 +18,7 @@ Get an API key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&
 
 ## How it works
 
-- Each job creates its own browser, connects over CDP, reads one random Wikipedia page, and stops the browser in `finally`.
+- Each job creates its own browser, connects over CDP, reads one random Wikipedia page (an HTTP error counts as a failure), and stops the browser in `finally`. `timeout=5` (minutes) makes the browser stop itself if the stop call fails.
 - `CONCURRENCY` (default 10) caps browsers running at once. New projects get 10 concurrent browsers; the limit rises with spend (50 at $100, 250 at $1,000). Check yours with `GET /api/v2/billing/account` (`concurrentSessionLimit`).
 - `proxy_country_code=None` turns off the residential proxy for sites that do not need it, which lowers traffic cost.
 - `metadata={"job": ...}` labels each browser so you can find it in the dashboard.
