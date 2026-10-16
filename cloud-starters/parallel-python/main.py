@@ -56,6 +56,8 @@ async def main() -> None:
         else:
             print(f"job {i:2}: {result}")
     print(f"\n{JOBS - failed}/{JOBS} jobs succeeded")
+    if failed:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

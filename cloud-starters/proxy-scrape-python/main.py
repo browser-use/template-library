@@ -1,6 +1,5 @@
 """Scrape through residential proxies in several countries, or your own proxy."""
 
-import json
 import os
 
 from browser_use_sdk.v4 import BrowserUse, CustomProxy
@@ -38,8 +37,12 @@ def scrape(client: BrowserUse, country: str) -> dict:
             browser = p.chromium.connect_over_cdp(session.cdp_url)
             context = browser.contexts[0]
             page = context.pages[0] if context.pages else context.new_page()
-            page.goto(URL)
-            return json.loads(page.inner_text("body"))
+            response = page.goto(URL)
+            if response is None or not response.ok:
+                raise RuntimeError(
+                    f"HTTP {response.status if response else 'no response'}"
+                )
+            return response.json()
     finally:
         client.browsers.stop(session.id)
 
