@@ -18,11 +18,11 @@ async def main() -> None:
         # A cloud profile saves cookies when the browser stops,
         # so the next run starts logged in.
         cloud_profile_id=os.getenv("CLOUD_PROFILE_ID") or None,
-        # Lock the agent to the site that receives the credentials.
+        # Only let the agent navigate this site (and its subdomains).
         allowed_domains=[f"*.{DOMAIN}"],
     )
 
-    # The LLM only sees the placeholder names, never the values.
+    # The task uses placeholder names; real values are filled in only when typed.
     # A placeholder ending in bu_2fa_code holds a TOTP secret:
     # the agent types the current 6-digit code.
     sensitive_data: dict[str, str | dict[str, str]] = {

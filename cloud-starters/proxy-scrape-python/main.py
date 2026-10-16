@@ -21,8 +21,8 @@ def proxy_settings(country: str) -> dict:
                 {
                     "host": os.environ["PROXY_HOST"],
                     "port": int(os.environ["PROXY_PORT"]),
-                    "username": os.getenv("PROXY_USERNAME"),
-                    "password": os.getenv("PROXY_PASSWORD"),
+                    "username": os.getenv("PROXY_USERNAME") or None,
+                    "password": os.getenv("PROXY_PASSWORD") or None,
                 }
             )
         }

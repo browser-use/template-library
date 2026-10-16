@@ -10,7 +10,7 @@ def main() -> None:
     with BrowserUse() as client:  # reads BROWSER_USE_API_KEY
         run = client.runs.create(
             "Open news.ycombinator.com and return the title and URL of the top post",
-            max_cost_usd=0.50,  # hard stop for this run
+            max_cost_usd=0.50,  # spend limit, checked between steps (can overshoot slightly)
         )
         print(f"Run {run.id} started (session {run.session_id})")
 

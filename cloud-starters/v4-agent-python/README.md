@@ -18,7 +18,7 @@ Get an API key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&
 
 ## How it works
 
-- `client.runs.create(task, max_cost_usd=0.50)` starts a run in a new session and caps its spend.
+- `client.runs.create(task, max_cost_usd=0.50)` starts a run in a new session with a spend limit (checked between steps, so it can overshoot slightly).
 - `client.runs.wait_for_completion(run.id)` polls the status endpoint and returns the result, status and `total_cost_usd`.
 - Follow-up turns: `client.runs.create("...", session_id=run.session_id)`.
 - Options: `browser_settings={"proxyCountryCode": "de", "profileId": "..."}`, `model=...`, `secret_bindings=[...]`.
