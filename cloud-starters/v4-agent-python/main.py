@@ -21,8 +21,10 @@ def main() -> None:
             client.runs.cancel(run.id)  # stop paid work on Ctrl+C or a polling error
             raise
         print(f"Status: {result.status.value}")
-        print(f"Result: {result.result}")
         print(f"Cost: ${result.total_cost_usd}")
+        if result.status.value != "completed":
+            raise SystemExit(f"Run did not complete: {result.error}")
+        print(f"Result: {result.result}")
 
         # Follow-up turns reuse the same session (and its browser, if still running):
         # client.runs.create("Now open the comments", session_id=run.session_id)

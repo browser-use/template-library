@@ -18,7 +18,7 @@ Get an API key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&
 
 ## How it works
 
-- `client.browsers.create({ proxyCountryCode: "us" })` starts a stealth Chromium behind a US residential proxy and returns `cdpUrl` and `liveUrl`.
+- `client.browsers.create({ proxyCountryCode: "us", timeout: 10 })` starts a stealth Chromium behind a US residential proxy (`timeout: 10` minutes is a backstop if the process is killed before `stop`) and returns `cdpUrl` and `liveUrl`.
 - `puppeteer-core` is enough: the browser runs in the cloud, so no Chrome download.
 - Use `browser.defaultBrowserContext()` so profile cookies and managed settings apply.
 - `browser.disconnect()` releases the connection. `client.browsers.stop(session.id)` stops the cloud browser and its billing.

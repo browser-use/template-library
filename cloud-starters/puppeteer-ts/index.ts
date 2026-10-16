@@ -4,7 +4,8 @@ import { BrowserUse } from "browser-use-sdk/v4";
 import puppeteer from "puppeteer-core";
 
 const client = new BrowserUse(); // reads BROWSER_USE_API_KEY
-const session = await client.browsers.create({ proxyCountryCode: "us" });
+// timeout (minutes) is a backstop: the browser stops itself even if this process is killed.
+const session = await client.browsers.create({ proxyCountryCode: "us", timeout: 10 });
 console.log(`Live view: ${session.liveUrl}`);
 
 try {
