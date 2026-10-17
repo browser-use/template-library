@@ -2,6 +2,12 @@
 	"default": {
 		"file": "default_template.py",
 		"description": "Simplest setup - capable of any web task with minimal configuration",
+		"files": [
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
+			}
+		],
 		"author": {
 			"name": "Reagan Hsu",
 			"github_profile": "https://github.com/Cheggin",
@@ -11,6 +17,12 @@
 	"advanced": {
 		"file": "advanced_template.py",
 		"description": "All configuration options shown with defaults",
+		"files": [
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
+			}
+		],
 		"author": {
 			"name": "Reagan Hsu",
 			"github_profile": "https://github.com/Cheggin",
@@ -20,6 +32,12 @@
 	"tools": {
 		"file": "tools_template.py",
 		"description": "Custom tool example - extend agent capabilities with your own functions",
+		"files": [
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
+			}
+		],
 		"author": {
 			"name": "Reagan Hsu",
 			"github_profile": "https://github.com/Cheggin",
@@ -50,6 +68,10 @@
 			{
 				"source": "sandbox/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -119,6 +141,10 @@
 			{
 				"source": "shopping/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -189,6 +215,10 @@
 				"source": "job-application/example_resume.pdf",
 				"dest": "example_resume.pdf",
 				"binary": true
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -256,6 +286,10 @@
 			{
 				"source": "agentmail/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -312,6 +346,10 @@
 			{
 				"source": "llm-arena/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -372,6 +410,10 @@
 			{
 				"source": "slack/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -441,6 +483,10 @@
 			{
 				"source": "all-openai-jobs/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -506,6 +552,10 @@
 			{
 				"source": "scheduler/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
