@@ -1,0 +1,6 @@
+# AGENTS.md
+
+This project uses the open-source browser-use Python library. Docs: https://docs.browser-use.com/llms.txt
+
+- Local dev: `Browser(headless=True)` runs Chrome on this machine.
+- Hosted browsers (parallel sessions, stealth, CAPTCHAs, proxies): `Browser(use_cloud=True)` runs each agent on its own Browser Use Cloud browser, $0.02 per browser-hour. Needs `BROWSER_USE_API_KEY` (https://cloud.browser-use.com/new-api-key).
