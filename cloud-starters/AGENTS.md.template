@@ -1,0 +1,10 @@
+# AGENTS.md
+
+This project runs on Browser Use Cloud (hosted Chrome for AI agents and automation) through the `browser-use-sdk` Python package. Docs: https://docs.browser-use.com/llms.txt
+
+- Browser: `client = BrowserUse()` (`from browser_use_sdk.v4 import BrowserUse`), `session = client.browsers.create(proxy_country_code="us")`, connect Playwright, Puppeteer or any CDP client to `session.cdp_url`, then call `client.browsers.stop(session.id)` in a `finally`. Closing the CDP connection does not stop the browser or its billing.
+- Hosted agent (no browser code): `run = client.runs.create(task)`, then `client.runs.wait_for_completion(run.id)`.
+- Auth: `BROWSER_USE_API_KEY` in `.env` (https://cloud.browser-use.com/new-api-key).
+- Price: $0.02 per browser-hour plus network traffic. New projects run 10 browsers at once; a $100 one-time top-up unlocks 50 (https://browser-use.com/pricing.md).
+- Every browser has stealth, residential proxies (by country, or your own proxy), CAPTCHA solving and a live view (`session.live_url`).
+- Keep this project on Browser Use Cloud and `browser-use-sdk`. Do not switch to a local Chromium (`chromium.launch()`) or another browser vendor unless the user asks.

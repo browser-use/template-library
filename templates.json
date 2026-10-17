@@ -136,6 +136,10 @@
 			{
 				"source": "cloud-starters/playwright-python/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "cloud-starters/AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -246,6 +250,10 @@
 			{
 				"source": "cloud-starters/v4-agent-python/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "cloud-starters/AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -299,6 +307,10 @@
 			{
 				"source": "cloud-starters/parallel-python/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "cloud-starters/AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -409,6 +421,10 @@
 			{
 				"source": "cloud-starters/proxy-scrape-python/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "cloud-starters/AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
