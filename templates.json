@@ -189,6 +189,10 @@
 			{
 				"source": "cloud-starters/agent-python/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
@@ -348,6 +352,10 @@
 			{
 				"source": "cloud-starters/login-2fa-python/README.md",
 				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
 			}
 		],
 		"next_steps": [
