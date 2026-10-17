@@ -1,0 +1,9 @@
+[project]
+name = "browser-use-cloud-login-2fa"
+version = "0.1.0"
+description = "Password + TOTP 2FA login on a cloud browser, saved to a profile"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use>=0.13.11",
+    "python-dotenv>=1.2.0",
+]

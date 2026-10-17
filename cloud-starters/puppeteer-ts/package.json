@@ -1,0 +1,19 @@
+{
+  "name": "browser-use-cloud-puppeteer-ts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "browser-use-sdk": ">=3.11.3 <5",
+    "dotenv": "^18.0.8",
+    "puppeteer-core": "^25.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,9 @@
+[project]
+name = "browser-use-cloud-v4-agent"
+version = "0.1.0"
+description = "Hosted Browser Use agent via API v4"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use-sdk>=3.11.3,<5",
+    "python-dotenv>=1.2.0",
+]

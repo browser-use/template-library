@@ -1,0 +1,10 @@
+[project]
+name = "browser-use-cloud-playwright"
+version = "0.1.0"
+description = "Playwright connected to a Browser Use Cloud browser over CDP"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use-sdk>=3.11.3,<5",
+    "playwright>=1.64.0",
+    "python-dotenv>=1.2.0",
+]

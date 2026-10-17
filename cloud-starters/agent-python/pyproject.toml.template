@@ -1,0 +1,9 @@
+[project]
+name = "browser-use-cloud-agent"
+version = "0.1.0"
+description = "browser-use Agent on a Browser Use Cloud browser"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use>=0.13.11",
+    "python-dotenv>=1.2.0",
+]
