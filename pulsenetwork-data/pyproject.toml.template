@@ -1,0 +1,12 @@
+[project]
+name = "browser-use-pulsenetwork-data"
+version = "0.1.0"
+description = "Agent buys live data mid-task with x402 micropayments"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use",
+    "x402[httpx,evm]>=2.15",
+    "httpx",
+    "eth-account",
+    "python-dotenv",
+]
