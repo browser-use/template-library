@@ -4,6 +4,6 @@ version = "0.1.0"
 description = "Browser automation with cloud sandbox configuration"
 requires-python = ">=3.11"
 dependencies = [
-    "browser-use",
+    "browser-use<1",
     "python-dotenv",
 ]

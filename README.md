@@ -33,10 +33,10 @@ This repository is used as a git submodule by the main [browser-use](https://git
 Templates are loaded by the `browser-use init` CLI command:
 
 ```bash
-uvx browser-use init --template default
-uvx browser-use init --template shopping
-uvx browser-use init --template job-application
-uvx browser-use init --template agentmail
+uvx --from 'browser-use<1' browser-use init --template default
+uvx --from 'browser-use<1' browser-use init --template shopping
+uvx --from 'browser-use<1' browser-use init --template job-application
+uvx --from 'browser-use<1' browser-use init --template agentmail
 ```
 
 ## Browser Use Cloud starters
@@ -44,7 +44,7 @@ uvx browser-use init --template agentmail
 [`cloud-starters/`](cloud-starters) has small examples that run on Browser Use Cloud browsers ($0.02 per browser-hour, billed per second): Playwright over CDP (TypeScript and Python), Puppeteer over CDP (TypeScript), the browser-use `Agent` with `Browser(use_cloud=True)`, the hosted v4 agent API, 50 parallel browsers, a password + TOTP 2FA login saved to a profile, and scraping through proxies.
 
 ```bash
-uvx browser-use init --template cloud-playwright
+uvx --from 'browser-use<1' browser-use init --template cloud-playwright
 ```
 
 The two TypeScript starters are plain npm projects in the same folder (not installed by `init`, which writes Python files).

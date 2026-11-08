@@ -7,7 +7,7 @@ Browser Use Cloud browsers cost **$0.02 per browser-hour, billed per second**.
 ## Run
 
 ```bash
-uvx browser-use init --template cloud-agent
+uvx --from 'browser-use<1' browser-use init --template cloud-agent
 cd cloud-agent
 cp .env.example .env   # add BROWSER_USE_API_KEY
 uv sync
