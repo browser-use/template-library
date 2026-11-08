@@ -15,7 +15,7 @@ Browser Use Cloud browsers cost **$0.02 per browser-hour, billed per second**. E
 | [`login-2fa-python`](login-2fa-python) | Password + TOTP 2FA login saved to a profile | `cloud-login-2fa` |
 | [`proxy-scrape-python`](proxy-scrape-python) | Residential proxies by country, or your own proxy | `cloud-proxy-scrape` |
 
-Python starters install with `uvx browser-use init --template <name>`. The TypeScript starters are plain npm projects: copy the folder, `npm install`, `npm start`.
+Python starters install with `uvx --from 'browser-use<1' browser-use init --template <name>`. The TypeScript starters are plain npm projects: copy the folder, `npm install`, `npm start`.
 
 The pattern in every direct-browser starter:
 

@@ -5,7 +5,7 @@ description = "Compare different AI models side-by-side in LLM Arena"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "browser-use>=0.9.5",
+    "browser-use>=0.9.5,<1",
     "playwright>=1.55.0",
     "python-dotenv>=1.0.0",
 ]
