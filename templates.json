@@ -649,6 +649,70 @@
 			"last_modified_date": "2025-11-11"
 		}
 	},
+	"moemail": {
+		"file": "moemail/main.py",
+		"description": "Test sign-up flows end to end: a disposable MoeMail inbox receives the verification email",
+		"files": [
+			{
+				"source": "moemail/main.py",
+				"dest": "main.py"
+			},
+			{
+				"source": "moemail/email_tools.py",
+				"dest": "email_tools.py"
+			},
+			{
+				"source": "moemail/pyproject.toml.template",
+				"dest": "pyproject.toml"
+			},
+			{
+				"source": "gitignore.template",
+				"dest": ".gitignore"
+			},
+			{
+				"source": "moemail/.env.example.template",
+				"dest": ".env.example"
+			},
+			{
+				"source": "moemail/README.md",
+				"dest": "README.md"
+			},
+			{
+				"source": "AGENTS.md.template",
+				"dest": "AGENTS.md"
+			}
+		],
+		"next_steps": [
+			{
+				"title": "Navigate to project directory",
+				"commands": ["cd {template}"]
+			},
+			{
+				"title": "Set up your API keys",
+				"commands": [
+					"cp .env.example .env",
+					"# Edit .env and add your MOEMAIL_API_KEY, BROWSER_USE_API_KEY and SIGNUP_URL"
+				],
+				"note": "(Get a MoeMail key at https://moemail.app under Profile -> API Keys)\n(Get Browser-Use key at https://cloud.browser-use.com/dashboard/settings?tab=api-keys&new)"
+			},
+			{
+				"title": "Install dependencies",
+				"commands": ["uv sync"]
+			},
+			{
+				"title": "Run the script",
+				"commands": ["uv run {output}"]
+			},
+			{
+				"footer": "📖 See README.md for customization and advanced usage"
+			}
+		],
+		"author": {
+			"name": "BeilunYang",
+			"github_profile": "https://github.com/beilunyang",
+			"last_modified_date": "2026-11-27"
+		}
+	},
 	"llm-arena": {
 		"file": "llm-arena/main.py",
 		"description": "Compare different AI models side-by-side in LLM Arena",
